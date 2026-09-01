@@ -52,11 +52,5 @@ mean(omega_filt2_demo$handedness_laterality_quotient, na.rm = TRUE)
 
 ```
 
-## Including Plots
-
-
-```{r pressure, echo=FALSE}
-
-```
 
 

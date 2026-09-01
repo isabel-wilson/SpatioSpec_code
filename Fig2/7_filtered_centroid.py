@@ -1,6 +1,8 @@
 """ 
-This version computes the cluster-level centroids straight from the individual-level COMs
-There is also a section that counts the number of points each participant has in the two main clusters
+1. Computes cluster-specific group centroid per frequency
+2. Computes each individual's distance from that cluster centroid
+3. Normalizes distances by the approx width of the cluster along its main axis
+4. Convert to R-readable format
 
 """
 #%%
@@ -13,14 +15,15 @@ from mne.datasets import fetch_fsaverage
 import pickle
 import os
 from datetime import datetime
-from collections import Counter
+import math
 
 # User input
-base_dir = "C:/meg/params/0_SpatioSpec_results"
+base_dir = "C:/meg/params/03_lh_rh_rerun"
 fs_dir = "C:/meg/params/fs_subjects"
-hemi = "rh"
-cluster = [1]
-name = "large"
+hemi = "lh"
+cluster = [0]
+name = "small"
+iteration = "small"
 
 # Frequencies
 freqs = np.arange(8, 30, 0.25)
@@ -122,23 +125,9 @@ filename = f"{hemi}_8-30Hz_bestparams_" + str(best_minpts) + "_" + str(best_eps1
 with open(f"{base_dir}/labels_{filename}.pkl", "rb") as f:
    labels = pickle.load(f)
 
-def percentage_table(arr):
-    total = len(arr)
-    freq = Counter(arr)
-    table = [(num, (count / total) * 100) for num, count in freq.items()]
-    table.sort(key=lambda x: -x[1])
-    return table
-
-arr = labels
-for num, perc in percentage_table(arr):
-    print(f"{num}: {perc:.2f}%")
-
-
 # Load list of COMs
 with open(os.path.join(base_dir, f"COM_coord_subject_df_8_to_30_{hemi}_vertex.pkl"), "rb") as f:
    COM_coord_subject_df = pickle.load(f)
-
-
 
 # Filter
 mask = np.isin(labels, cluster)
@@ -159,7 +148,7 @@ inflated_surface_rr, inflated_surface_tri = mne.read_surface(f"{fs_dir}/fsaverag
 
 # to save images in
 time = datetime.now().strftime("%m-%d_%H-%M")
-new_folder_name = f"{base_dir}/{time}_centroid_cluster{name}_{hemi}_vertex"
+new_folder_name = f"{base_dir}/{time}_centroid_cluster_{name}_{hemi}"
 
 # Output list
 COM_list = []
@@ -177,10 +166,11 @@ for f in freqs:
    for col_i, (index, row) in enumerate(df_filtered_f.iterrows()):
 
       # Pull out coordinate and convert to vertex
-      vertex = row[2:].to_numpy()
+      vertex = row[2:].to_numpy()[0]
+      #vertex = np.where((inflated_surface_rr == coord).all(axis=1))[0][0]
       
       # Create an array with 0s everywhere, except for a 1 at given vertex, or more than 1 if two subjects are there
-      stc_data[vertex[0], 0] = stc_data[vertex[0], 0] + 1
+      stc_data[vertex, 0] = stc_data[vertex, 0] + 1
 
    if np.any(stc_data!=0): 
 
@@ -201,97 +191,145 @@ for f in freqs:
       COM_vertex, _, _ = stc.center_of_mass(hemi=hemi_param, subject = "fsaverage", subjects_dir = "C:/meg/params/fs_subjects")
 
       # Plot for checking
-      os.makedirs(new_folder_name, exist_ok=True)
-      plot_stc(savedir = new_folder_name, brain_to_plot = stc, t = f, center_of_mass = COM_vertex)
+      # os.makedirs(new_folder_name, exist_ok=True)
+      # plot_stc(savedir = new_folder_name, brain_to_plot = stc, t = f, center_of_mass = COM_vertex)
          
       # Add to list of centroids
-      COM_list.append(COM_vertex)
+      COM_coord = inflated_surface_rr[COM_vertex]
+      row = np.insert(COM_coord, 0, f)
+      COM_list.append(row)
 
    else: 
-      continue
+      COM_list.append(np.array([f, 0, 0, 0]))
 
 #make_3d_plot_spatiospec(savedir = new_folder_name, COM_list = COM_list, name = f"{hemi} cluster {name} centroids")
 
-file = os.path.join(base_dir, f"mean_stc_COM_cluster_{name}_{hemi}_8-30_vertex.pkl") 
+file = os.path.join(base_dir, f"mean_stc_COM_cluster_{name}_{hemi}.pkl") 
 with open(file, "wb") as f:
     pickle.dump(COM_list, f)
 
 
+#---------------------------------------------------------
+#---------- Subject deviation from group centroid
+#---------------------------------------------------------
+
+
+# User input
+# freqs_og = np.arange(8, 30, 0.25) # because some of the files you will load have this format
+# freqs = np.arange(10, 30, 0.25)
+
+
+##### Read files
+
+# CENTROIDS
+# created earlier in this script
+# list
+with open(os.path.join(base_dir, f"mean_stc_COM_cluster_{iteration}_{hemi}.pkl"), "rb") as f:
+   mean = pickle.load(f)
+#mean = np.column_stack([freqs_og, mean])
+mean = pd.DataFrame(mean, columns=["freq", "x", "y", "z"])
+freqs_used = np.unique(mean["freq"])
+#mean = mean[mean["freq"].isin(freqs)]
+
+# INDIVIDUALS
+# created by individual_spread.py
+# dataframe with cols subject, freq, x, y, z
+with open(os.path.join(base_dir, f"COM_coord_subject_df_8_to_30_{hemi}.pkl"), "rb") as f:
+   individuals = pickle.load(f)
+individuals = individuals[individuals["freq"].isin(freqs_used)]
+
+
+##### Distance = sqrt((x-x)^2 + (y-y)^2 + (z-z)^2)
+
+# dataframe for output: 
+# x y z mean is included to be helpful for later plotting
+distances = pd.DataFrame(columns = ["subject", "freq", "distance"])
+
+for index, row in individuals.iterrows():
+   subject = row["subject"]
+   freq = row["freq"]
+   x_individual = row["x"]
+   y_individual = row["y"]
+   z_individual = row["z"]
+   x_mean = mean.loc[mean['freq'] == freq, 'x'].iloc[0]
+   y_mean = mean.loc[mean['freq'] == freq, 'y'].iloc[0]
+   z_mean = mean.loc[mean['freq'] == freq, 'z'].iloc[0]
+   x_term = (x_individual - x_mean)**2
+   y_term = (y_individual - y_mean)**2
+   z_term = (z_individual - z_mean)**2
+   distance = math.sqrt(x_term + y_term + z_term)
+   distances.loc[len(distances)] = [subject, freq, distance]
+
+with open(os.path.join(base_dir, f"individual_distances_from_centroid_cluster_{iteration}_{hemi}.pkl"), "wb") as f: 
+   pickle.dump(distances, f)
 
 
 
-#%%
-import matplotlib.colors as mcolors
-import numpy as np
-import matplotlib.pyplot as plt
-import mne
+##### Normalize the distances to an approximation of the length of the cluster on its longest axis
+# - the difference between the earliest and latest mean
 
-def lighten_color(hex_color, amount):
-    """amount: 0 = white, 1 = original color"""
-    rgb = mcolors.to_rgb(hex_color)
-    white = np.array([1, 1, 1])
-    return tuple(white + amount * (np.array(rgb) - white))
+with open(os.path.join(base_dir, f"mean_stc_COM_cluster_{iteration}_{hemi}.pkl"), "rb") as f:
+   mean = pickle.load(f)
 
-def darken_color(hex_color, amount):
-    """amount: 0 = black, 1 = original color"""
-    rgb = mcolors.to_rgb(hex_color)
-    black = np.array([0, 0, 0])
-    return tuple(black + amount * (np.array(rgb) - black))
+# First mean
+first_x = mean[0][0]
+first_y = mean[0][1]
+first_z = mean[0][2]
+last_x = mean[len(mean)-1][0]
+last_y = mean[len(mean)-1][1]
+last_z = mean[len(mean)-1][2]
 
-base_color = "#20a486" #"#481c6e" # 
+# distance between first and last
+x_term = (first_x - last_x)**2
+y_term = (first_y - last_y)**2
+z_term = (first_z - last_z)**2
+distance_long_axis = math.sqrt(x_term + y_term + z_term)
 
-# Build a light -> dark gradient through the base color
-white = lighten_color("white", 0.5)
-light = lighten_color(base_color, 0.25)   # near-white tint
-mid   = base_color
-dark  = darken_color(base_color, 0.25)     # near-black shade
+# do the normalization
+with open(os.path.join(base_dir, f"individual_distances_from_centroid_cluster_{iteration}_{hemi}.pkl"), "rb") as f: 
+   distances = pickle.load(f)
+distances["distance_normed"]= distances["distance"]/distance_long_axis
 
-custom_cmap = mcolors.LinearSegmentedColormap.from_list(
-    "custom_purple",
-    [white, white, light, mid]
-)
+with open(os.path.join(base_dir, f"individual_distances_from_centroid_cluster_{iteration}_{hemi}_normalized.pkl"), "wb") as f: 
+   pickle.dump(distances, f)
 
 
-fig, ax = plt.subplots(figsize=(4, 1))
-gradient = np.linspace(0, 1, 256).reshape(1, -1)
-ax.imshow(gradient, aspect="auto", cmap=custom_cmap)
+##### Plot
 
-# hide ticks but keep the spines for a border
-ax.set_xticks([])
-ax.set_yticks([])
-for spine in ax.spines.values():
-    spine.set_visible(True)
-    spine.set_color("black")
-    spine.set_linewidth(1)
+# Plot a histogram of distances (for each frequency)
+# Loop through frequencies. For each frequency, plot histogram for subjects, then save. 
 
-plt.show()
+# for f in freqs:
+#    print("Now working on " + str(f))
 
-fs_dir = "C:/meg/params/fs_subjects"
+#    # Subset the rows for this particular frequency
+#    df = distances.loc[distances['freq'] == f]
+#    # Get just the column distance, and nothing else (not even indices)
+#    distance_col = df["distance_normed"].values
 
-stc = mne.read_source_estimate("C:/meg/params/03_lh_rh_rerun/mean_stc")
-# times: 1 to 40 in 0.25 increments
+#    # Initialize figure
+#    fig = plt.figure()
 
-# alpha 8-12, beta 15-30
-stc_cropped = stc.copy().crop(tmin=15, tmax=30)
-avg_data = stc_cropped.data.mean(axis=1)
-print(np.min(avg_data))
-print(np.max(avg_data))
-print(np.min(avg_data)+((np.max(avg_data)-np.min(avg_data))/2))
-avg_stc = mne.SourceEstimate(
-    avg_data[:, np.newaxis],
-    vertices=stc.vertices,
-    tmin=0, tstep=1)
-avg_stc.plot(
-    subject="fsaverage",
-    subjects_dir=fs_dir,
-    hemi="rh",
-    surface="inflated",
-    background='white',
-    cortex="white", 
-    alpha = 1, 
-    clim = dict(kind="percent", lims=[0, 40, 80]),
-    colormap = custom_cmap
-)
-# mne defaults are clim = dict(kind="percent", lims=[96, 97.5, 99.95])
+#    # Plot
+#    plt.hist(distance_col, bins = 100)
+
+#    # Add labels
+#    plt.title('Histogram of distances from centroid for frequency ' + str(f))
+#    plt.xlabel('Distance (normalized to distance between first and last centroid)')
+#    plt.ylabel('Count')
+#    plt.xlim(0, 1.6)
+#    plt.ylim(0, 40)
+
+
+#---------------------------------------------------------
+#---------- Convert pkl to rds, for next step in R
+#---------------------------------------------------------
+path = os.path.join(base_dir, f"individual_distances_from_centroid_cluster_{iteration}_{hemi}")
+
+with open(path + ".pkl", "rb") as f:
+   data = pickle.load(f)
+
+data.to_feather(path + ".rds")
+
 
 # %%

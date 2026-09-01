@@ -39,7 +39,7 @@ df_merged <- compute_avg_distances(
   file_paths = c(paste0(base_dir, "/individual_distances_from_centroid_normalized_lh.rds"), 
                   paste0(base_dir, "/individual_distances_from_centroid_normalized_rh.rds")),
   col_names = c(glue("lh"), glue("rh")),
-  freq_threshold = as.integer(low_freq)
+  freq_threshold = as.integer(8)
 )
 
 

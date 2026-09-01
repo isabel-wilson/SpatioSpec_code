@@ -130,27 +130,4 @@ make_3d_plot_spatiospec(savedir = os.path.join(base_dir, "group_coords"), COM_li
 file = os.path.join(base_dir, f"mean_stc_full_COM_8-30_{hemi}.pkl") 
 with open(file, "wb") as f:
     pickle.dump(COM_list, f)
-# %%
 
-file = os.path.join(base_dir, "mean_stc_full")
-stc = mne.read_source_estimate(file)
-
-stc.plot(
-   subject="fsaverage",
-   subjects_dir="C:/meg/params/fs_subjects",
-   time_viewer = True
-)
-
-
-# %%
-import re
-for filename in ["sub-0155_psd_beamformer_fsaverage_whitened-rh.stc", "sub-0006_psd_beamformer_fsaverage_whitened-lh.stc", "sub-0063_psd_beamformer_fsaverage_whitened-rh.stc", "sub-0154_psd_beamformer_fsaverage_whitened-lh.stc"]:
-   subject = re.search(r'sub-(\d+)', filename).group(1)
-   if subject in subjects_exclude: 
-      continue
-   print(filename)
-# %%
-
-with open("C:/meg/params/05_omega/mean_stc_full_COM_8-30_lh.pkl", "rb") as f:
-   df = pickle.load(f)
-# %%

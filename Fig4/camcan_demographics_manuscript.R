@@ -27,14 +27,12 @@ nrow(brains_with_acer) # 604
 
 # Full cam-can brain sample
 max(brains_with_demo$age)
-max(brains_with_demo$age)
 min(brains_with_demo$age)
 round(mean(brains_with_demo$age))
 round(sd(brains_with_demo$age))
 nrow(brains_with_demo %>% filter(sex == "MALE"))
 
 # Cam-can cognitive sample
-max(brains_with_acer$age)
 max(brains_with_acer$age)
 min(brains_with_acer$age)
 round(mean(brains_with_acer$age))

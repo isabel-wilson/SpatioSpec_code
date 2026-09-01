@@ -1,3 +1,8 @@
+""""
+Computes distances of OMEGA data from CAMCAN centroids. Computes null distribution. Plots
+
+"""
+
 #%%
 import pandas as pd
 import numpy as np

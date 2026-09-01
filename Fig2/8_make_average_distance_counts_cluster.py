@@ -1,8 +1,9 @@
 #%%
-#---------------------------------------------------------
-#---------- Count points per participant in each cluster and compute average
-#---------------------------------------------------------
 
+"""
+Describes the cluster: Counts points per participant in each cluster and computes average
+
+"""
 # Import packages
 import mne
 import pandas as pd
