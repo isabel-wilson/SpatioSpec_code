@@ -2,7 +2,7 @@
 """
 Pipeline for producing data related to the "SpatioSpec" project 
 
-This code runs continuously - i.e., set your directories up like described below, and outputs will appear in /Data and /plots. 
+This code runs continuously - i.e., set your directories up like described, and outputs will appear in /Data and /plots. 
 Outputs in /plots are basic statistics and plots you can use to verify results in the manuscript. 
 
 -------------------------------------------------------------------------------------------------------------------
@@ -324,7 +324,7 @@ Output:
 """
 # -------------------------------------------------------------------------------------------------------------------
 
-#%%
+
 for hemi in ["lh", "rh"]:
 
     #----- Load files
@@ -631,7 +631,7 @@ Outputs are saved to the folder omega-camcan_distance_cluster1
 
 np.random.seed(0)
 
-# Loop over combinations of bin length, segment length, and hemisphere (replaces SLURM script)
+# Loop over stuff
 for binlength in [1, 2, 4, 8, 11]:
     for segment in ["full", "first15"]:
         for hemi in ["rh", "lh"]:

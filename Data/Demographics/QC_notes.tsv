@@ -1,0 +1,194 @@
+Subject	Session	Length	Inclusion	Inclusion_reason	Special_instructions	Erm_path	Bad_channels_remove	Filename	ECG proj	EOG proj	PSD	MAD	Covariance	Alpha	Beta	Notes
+sub-0001	ses-01	NA	Definitely exclude	Could not run coregistration	0	0		0								
+sub-0002	ses-02	5	0	0	0	0		sub-0002_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	“Thick” PSD after 55 Hz. High amplitude of frontal channels 0-2 Hz.	Good	Good	Hand knob	Hand knob	99-sec ERM, but discussed and it’s long enough
+sub-0003	ses-02	5	0	0	Replace ERM	/home/isabelwilson/OMEGA_HC/MEG/sub-0190/ses-03/meg/sub-0190_ses-03_task-noise_run-02_meg.ds		sub-0003_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0004	ses-02	10	0	0	0	0		sub-0004_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	“Thick” PSD after 55 Hz. High amplitude of frontal channels 0-2 Hz.	Good	Good	Good	Good	
+sub-0006	ses-01	5	0	0	0	0		sub-0006_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0007	ses-02	10	0	0	0	0		sub-0007_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0008	ses-02	10	0	0	Replace ERM	/home/isabelwilson/OMEGA_HC/MEG/sub-0284/ses-02/meg/sub-0284_ses-02_task-noise_meg.ds										
+sub-0009	ses-02	5	0	0	0	0		sub-0009_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Okay	Good	Good	Good	Good	
+sub-0010	ses-01	10	0	0	0	0		sub-0010_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob; Alpha much lower than other freqs	Good	Reviewed with AW and confirmed inclusion (in this dataset, hand knob is okay)
+sub-0012	ses-01	5	0	0	0	0		sub-0012_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob; Alpha much lower than other freqs	Good	
+sub-0016	ses-02	5	0	0	0	0		sub-0016_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0018	ses-01	5	0	0	0	0		sub-0018_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob	Good	
+sub-0019	ses-02	10	0	0	0	0		sub-0019_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Low alpha relative to other bands	Good	
+sub-0021	ses-01	10	0	0	0	0		sub-0021_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0022	ses-01	5	0	0	0	0		sub-0022_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0023	ses-01	5	0	0	0	0		sub-0023_ses-01_task-restaftertask_run-03_meg_QC_report.html	Okay	Okay	Good	Good	Good	Good	Good	
+sub-0024	ses-02	10	0	0	Replace ERM	/home/isabelwilson/OMEGA_HC/MEG/sub-0159/ses-02/meg/sub-0159_ses-02_task-noise_run-01_meg.ds		sub-0024_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0025	ses-01	10	0	0	0	0		sub-0025_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0026	ses-02	5	0	0	0	0		sub-0026_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0028	ses-02	10	0	0	0	0		sub-0028_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0029	ses-02	5	0	0	0	0		sub-0029_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0030	ses-02	5	0	0	0	0		sub-0030_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Bad channel (low freq spike); removed	Good	Good	Good	Good	Decided to leave small low-freq spike
+sub-0031	ses-02	5	0	0	0	0		sub-0031_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Alpha much lower than other freqs	Beta much lower than other freqs	
+sub-0032	ses-02	5	0	0	Replace ERM	/home/isabelwilson/OMEGA_HC/MEG/sub-0051/ses-03/meg/sub-0051_ses-03_task-noise_run-06_meg.ds		sub-0032_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Hand knob	Good	
+sub-0033	ses-01	5	0	0	0	0		sub-0033_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0034	ses-01	10	0	0	0	0		sub-0034_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Alpha much lower than other freqs	Good	
+sub-0035	ses-01	5	0	0	0	0		sub-0035_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0036	ses-01	10	0	0	0	0		sub-0036_ses-01_task-rest_run-01_meg_QC_report.html	Second and third ECG projs have central high amplitude spot	Second EOG proj has central high amplitude spot	Good	Good	Good	Hand knob (left only)	Good	Suspect
+sub-0037	ses-01	5	0	0	0	0		sub-0037_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0039	ses-01	10	0	0	Replace ERM	/home/isabelwilson/OMEGA_HC/MEG/sub-0164/ses-01/meg/sub-0164_ses-01_task-noise_run-08_meg.ds		sub-0039_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0040	ses-02	10	0	0	Remove bad channels	0	MRT51-4408 MRT41-4408 MRT52-4408 MRT42-4408 MLT41-4408 MRT31-4408 MRT53-4408 MRT43-4408 MLF14-4408 MLF13-4408	sub-0040_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Need to remove channels	Good	Good	Good	Good	Manually removed bad channels on top right. 2 other bads identified automatically (bottom right)
+sub-0041	ses-01	5	0	0	Replace ERM, remove bad channel	/home/isabelwilson/OMEGA_HC/MEG/sub-0531/ses-01/meg/sub-0531_ses-01_task-noise_run-01_meg.ds	MLP21-4408	sub-0041_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Need to remove channels	Good	Good	Hand knob (right only)	Good	One bad channel (higher than rest over entire spectrum). Note that line 670 of generic_ (raw_erm...extend(additional_bads)) must be commented out because in this dataset raw channels are appended 4408 while erm channels are appended 4409
+sub-0042	ses-02	5	0	0	0	0		sub-0042_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob	Good	
+sub-0043	ses-01	5	0	0	0	0		sub-0043_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0044	ses-01	10	Definitely exclude	0	0	0		sub-0044_ses-01_task-rest_run-01_meg_QC_report.html	Bad	Bad	Huge artifact in PSD	Bad	Bad	Alpha much lower than other freqs	Beta much lower than other freqs	
+sub-0045	ses-01	10	0	0	0	0		sub-0045_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0046	ses-01	5	0	0	0	0		sub-0046_ses-01_task-rest_run-01_meg_QC_report.html	Okay	Okay	Huge artifact in PSD, goes away after filters/downsample	Okay	Okay	Alpha much lower than other freqs	Okay	Suspect
+sub-0047	ses-02	5	0	0	0	0		sub-0047_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Bad	Good	Good	Alpha much lower than other freqs	Good	Gamma looks bad - “Suspect.” 
+sub-0048	ses-02	10	0	0	Replace ERM	/home/isabelwilson/OMEGA_HC/MEG/sub-0531/ses-01/meg/sub-0531_ses-01_task-noise_run-01_meg.ds		sub-0048_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	Originally used /home/isabelwilson/OMEGA_HC/MEG/sub-0022/ses-02/meg/sub-0022_ses-02_task-noise_run-01_meg.ds. However, that ERM has empty covariance matrix so switched to /home/isabelwilson/OMEGA_HC/MEG/sub-0531/ses-01/meg/sub-0531_ses-01_task-noise_run-01_meg.ds 
+sub-0049	ses-01	5	0	0	0	0		sub-0049_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels 0-2 Hz, goes away after MAD	Good	Good	Good	Good	
+sub-0050	ses-01	5	0	0	0	0		sub-0050_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0051	ses-02	10	0	0	0	0		sub-0051_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Alpha much lower than other freqs	Good	
+sub-0052	ses-02	5	0	0	0	0		sub-0052_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob	Good	
+sub-0055	ses-01	5	0	0	turn_off_eog_proj	0		sub-0055_ses-01_task-rest_run-01_meg_QC_report.html	Small spot in middle of head (low absolute amplitude)	Poor	High amplitude of frontal channels low freq	Good	Bright spot	Good	Good	Delta looks bad, but confirmed with AW that I should include
+sub-0056	ses-01	5	0	0	0	0		sub-0056_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	Good	Okay	Good	Alpha much lower than other freqs	Good	
+sub-0057	ses-01	5	Definitely exclude	Could not run coregistration	0	0										
+sub-0058	ses-01	5	0	0	0	0		sub-0058_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0059	ses-01	5	0	0	0	0		sub-0059_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Narrow P2P	Good	Alpha much lower than other freqs	Good	
+sub-0061	ses-01	5	0	0	0	0		sub-0061_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0063	ses-01	5	0	0	0	0		sub-0063_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	Thick PSD but was previously told this was ok	Good	Good	Good	Good	Suspect
+sub-0064	ses-01	5	0	0	0	0		sub-0064_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	Thick PSD but was previously told this was ok	Good	Good	Good	Good	
+sub-0065	ses-01	10	0	0	0	0		sub-0065_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Low freq noise but goes away	Good	Good	Good	Good	
+sub-0066	ses-01	5	0	0	Remove bad channels	0	"""MRF13-4408"" ""MRF24-4408"" ""MRF12-4408"" ""MRF23-4408"""	sub-0066_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Need to remove channels. Big artifact that goes away. 	Good	Good	Hand knob (left only)	Good	
+sub-0067	ses-02	10	0	0	0	0		sub-0067_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0068	ses-01	5	0	0	Remove bad channels	0	“MRT31-4408”	sub-0068_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Need to remove channels	Good	Good	Hand knob (right only)	Good	
+sub-0069	ses-01	5	0	0	0	0		sub-0069_ses-01_task-rest_run-01_meg_QC_report.html	Noisy but okay	Good	High amplitude of frontal channels low freq	Good	Good	Hand knob (left only)	Good	
+sub-0070	ses-01	5	0	0	0	0		sub-0070_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0071	ses-01	5	0	0	0	0		sub-0071_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0072	ses-01	5	0	0	0	0		sub-0072_ses-01_task-rest_run-01_meg_QC_report.html	Noisy but okay	Good	Good	Narrow P2P	Good	Good	Good	
+sub-0073	ses-01	5	0	0	turn_off_eog_proj	0		sub-0073_ses-01_task-rest_run-02_meg_QC_report.html	Good	Very bad	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0074	ses-01	5	0	0	0	0		sub-0074_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0076	ses-01	5	0	0	0	0		sub-0076_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0077	ses-01	5	0	0	0	0		sub-0077_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Alpha much lower than other freqs	Good	
+sub-0078	ses-02	5	0	0	0	0		sub-0078_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Okay	Good	Good	Good	
+sub-0079	ses-02	5	0	0	0	0		sub-0079_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0080	ses-02	5	0	0	0	0		sub-0080_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0081	ses-01	5	0	0	0	0		sub-0081_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0085	ses-01	10	0	0	0	0		sub-0085_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0087	ses-02	5	0	0	0	0		sub-0087_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0088	ses-02	5	0	0	0	0		sub-0088_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0089	ses-02	5	0	0	Remove bad channels	0	'MLP11-4408' 'MZC04-4408' 'MLP21-4408' 'MLC55-4408' 'MLP22-4408' 'MLC62-4408' 'MLP12-4408' 'MRC63-4408' 'MLC42-4408' 'MLC55-4408' 'MLC63-4408'	sub-0089_ses-02_task-rest_run-01_meg_QC_report.html	Dot in middle of topomap 1 and 2	Okay	Good	Good	Good	Good	Good	
+sub-0090	ses-01	5	0	0	0	0		sub-0090_ses-01_task-rest_run-01_meg_QC_report.html	Dipole dot in topo for proj 2	Good	Good	Okay	Good	Good	Good	
+sub-0091	ses-01	5	0	0	0	0		sub-0091_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0092	ses-01	5	0	0	0	0		sub-0092_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0093	ses-01	5	0	0	0	0		sub-0093_ses-01_task-restaftertask_run-02_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0094	ses-01	5	0	0	0	0		sub-0094_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0095	ses-01	5	0	0	Replace ERM	/home/isabelwilson/OMEGA_HC/MEG/sub-0595/ses-01/meg/sub-0595_ses-01_task-noise_run-01_meg.ds		sub-0095_ses-01_task-restaftertask_run-02_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob	Good	Suspect (bandpower maps look weird)
+sub-0096	ses-01	5	0	0	Replace ERM	/home/isabelwilson/OMEGA_HC/MEG/sub-0595/ses-01/meg/sub-0595_ses-01_task-noise_run-01_meg.ds		sub-0096_ses-01_task-rest_run-01_meg_QC_report.html	Good	Dipole spot in proj 1 topomap	Good	Okay	Good	Good	Good	
+sub-0097	ses-01	10	0	0	0	0		sub-0097_ses-01_task-rest_run-01_meg_QC_report.html	Good	Dipole spot in proj 1 topomap	Good	Okay	Good	Good	Good	
+sub-0098	ses-01	5	0	0	0	0		sub-0098_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Okay	Good	Good	Good	
+sub-0099	ses-02	10	0	0	0	0		sub-0099_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0101	ses-01	10	0	0	0	0		sub-0101_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0102	ses-01	10	0	0	0	0		sub-0102_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0103	ses-02	5	0	0	0	0		sub-0103_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0104	ses-01	10	0	0	turn_off_eog_proj	0		sub-0104_ses-01_task-rest_run-01_meg_QC_report.html	Spot in topo for proj 2	Bad	Good	Good	Good	Good	Good	Suspect (bandpower maps look weird)
+sub-0105	ses-01	10	0	0	0	0		sub-0105_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob	Good	
+sub-0106	ses-01	8	0	0	0	0		sub-0106_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0134	ses-01	10	0	0	0	0		sub-0134_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0138	ses-01	10	0	0	Replace ERM, remove bad channel	/home/isabelwilson/OMEGA_HC/MEG/sub-0575/ses-01/meg/sub-0575_ses-01_task-noise_run-01_meg.ds	“MLT55-4408”	sub-0138_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0145	ses-02	5	0	0	0	0		sub-0145_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0149	ses-02	10	0	0	0	0		sub-0149_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0150	ses-01	5	0	0	0	0		sub-0150_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob	Good	
+sub-0151	ses-01	5	0	0	0	0		sub-0151_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0152	ses-01	5	0	0	0	0		sub-0152_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0154	ses-01	5	0	0	0	0		sub-0154_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0155	ses-01	5	0	0	0	0		sub-0155_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0156	ses-01	5	0	0	0	0		sub-0156_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0157	ses-01	5	0	0	0	0		sub-0157_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0158	ses-01	5	0	0	0	0		sub-0158_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Okay	Okay	Bandpower maps look weird (higher power in gyri than sulci?)
+sub-0159	ses-01	5	0	0	0	0		sub-0159_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Okay	Okay	Bandpower maps look weird (higher power in gyri than sulci?)
+sub-0161	ses-01	5	0	0	0	0		sub-0161_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0162	ses-01	5	0	0	0	0		sub-0162_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0164	ses-01	5	0	0	0	0		sub-0164_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Okay	Good	Good	Good	Good	Review
+sub-0165	ses-01	5	0	0	0	0		sub-0165_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0166	ses-01	5	0	0	0	0		sub-0166_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0167	ses-01	5	0	0	0	0		sub-0167_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Alpha much lower than other freqs	Good	Review
+sub-0168	ses-01	5	Definitely exclude	Striped artifact in PSD; tried 0.5-2 Hz SSP and didn’t work	0	0		sub-0168_ses-01_task-rest_run-01_meg_QC_report.html	Bad		Bad					No ECG in channel list; solution: turn of ECG proj. Striped artifact in PSD; tried 0.5-2 Hz custom SSP; didn’t work (makes it worse). Discussed with AW; conclusion is exclude. Must exclude others with this artifact as well. 
+sub-0170	ses-01	5	0	0	0	0		sub-0170_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0171	ses-01	5	0	0	0	0		sub-0171_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0172	ses-01	5	0	0	0	0		sub-0172_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0174	ses-01	10	0	0	0	0		sub-0174_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Hand knob	Good	
+sub-0175	ses-01	10	0	0	0	0		sub-0175_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0176	ses-01	7	0	0	0	0		sub-0176_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Artifact that goes away with filtering	Good	Good	Hand knob	Good	
+sub-0177	ses-01	10	0	0	0	0		sub-0177_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0179	ses-01	5	0	0	0	0		sub-0179_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0181	ses-01	5	0	0	0	0		sub-0181_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Okay	Good	Good	Good	
+sub-0185	ses-01	5	0	0	0	0		sub-0185_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Okay	Good	Good	Good	
+sub-0195	ses-01	5	0	0	0	0		sub-0195_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0197	ses-01	10	0	0	0	0		sub-0197_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Okay	Good	Good	Good	
+sub-0200	ses-01	5	0	0	0	0		sub-0200_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0207	ses-01	5	0	0	0	0		sub-0207_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0208	ses-01	5	0	0	0	0		sub-0208_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0210	ses-01	5	0	0	0	0		sub-0210_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0211	ses-01	5	0	0	0	0		sub-0211_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0212	ses-01	5	0	0	0	0		sub-0212_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0229	ses-02	5	0	0	Replace ERM, remove bad channel	/home/isabelwilson/OMEGA_HC/MEG/sub-0595/ses-01/meg/sub-0595_ses-01_task-noise_run-01_meg.ds		sub-0229_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	Suspect (first 100s of time series has too many bad segments)
+sub-0234	ses-01	5	0	0	0	0		sub-0234_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good (projs fine)	Good	Good	Good	Good	Good	
+sub-0236	ses-01	5	0	0	turn_off_eog_proj	0		sub-0236_ses-01_task-rest_run-01_meg_QC_report.html	Good	Bad	Good	Good	Good	Bad	Good	
+sub-0237	ses-01	5	0	0	0	0		sub-0237_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Artifact that goes away with filtering	Good	Good	Good	Good	
+sub-0238	ses-01	5	0	0	0	0		sub-0238_ses-01_task-rest_run-01_meg_QC_report.html	Good	Okay	Artifact that goes away with filtering	Good	Good	Hand knob	Good	
+sub-0240	ses-01	5	Definitely exclude	Could not read MEG data (“number of samples not an even multiple of trial”)	0	0										
+sub-0249	ses-02	5	Definitely exclude	0	0	0		sub-0249_ses-02_task-rest_run-01_meg_QC_report.html	Bad	Bad	Good	Good	Good	Bad	Bad	Reviewed with AW and confirmed exclusion
+sub-0258	ses-02	5	0	0	0	0		sub-0258_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Bad	Good	Good	Reviewed with AW and confirmed inclusion
+sub-0260	ses-02	5	0	0	0	0		sub-0260_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0266	ses-01	5	Definitely exclude	Striped artifact in PSD (same as sub-0168)	0	0		sub-0266_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Large stripped artifact	Good	Good	Good	Good	
+sub-0270	ses-02	5	0	0	0	0		sub-0270_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	Bandpower maps look weird
+sub-0284	ses-02	5	0	0	0	0		sub-0284_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0310	ses-02	5	Definitely exclude	Striped artifact in PSD (same as sub-0168)	0	0		sub-0310_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Bad	Good	Good	Good	Good	
+sub-0312	ses-02	5	0	0	0	0		sub-0312_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Okay	Good	Good	
+sub-0357	ses-02	5	Definitely exclude	Too many bad channels to remove all; custom SSP (22-24 Hz) didn’t work	0	0		sub-0357_ses-02_task-rest_run-01_meg_QC_report.html	Bad	Bad	Bad	Good	Good	Good	Good	Reviewed with AW and confirmed exclusion
+sub-0365	ses-02	5	Definitely exclude	Striped artifact in PSD (same as sub-0168)	0	0		sub-0365_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0371	ses-02	5	Exclude	Too much noise in frontal channels	0	0		sub-0371_ses-02_task-rest_run-01_meg_QC_report.html	Good	Good	Bad	Good	Good	Good	Good	
+sub-0531	ses-01	5	0	0	0	0		sub-0531_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob	Good	
+sub-0533	ses-01	5	0	0	0	0		sub-0533_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0534	ses-01	5	Definitely exclude	Could not run coregistration	0	0										
+sub-0536	ses-01	5	0	0	0	0		sub-0536_ses-01_task-rest_run-02_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0537	ses-01	5	0	0	0	0		sub-0537_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0538	ses-01	5	0	0	0	0		sub-0538_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Hand knob	Good	
+sub-0539	ses-01	5	0	0	0	0		sub-0539_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob	Good	
+sub-0540	ses-01	5	0	0	0	0		sub-0540_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0542	ses-01	5	0	0	0	0		sub-0542_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0543	ses-01	5	0	0	0	0		sub-0543_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0544	ses-01	5	0	0	0	0		sub-0544_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0545	ses-01	5	0	0	0	0		sub-0545_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0546	ses-01	5	0	0	0	0		sub-0546_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0547	ses-01	5	0	0	0	0		sub-0547_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Okay	Good	
+sub-0548	ses-01	5	0	0	0	0		sub-0548_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0549	ses-01	5	0	0	0	0		sub-0549_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Okay	Good	Good	Low alpha relative to other bands	Good	
+sub-0550	ses-01	5	Definitely exclude	0	0	0										
+sub-0551	ses-01	5	0	0	0	0		sub-0551_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob	Good	
+sub-0553	ses-01	5	0	0	0	0		sub-0553_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Good	Good	
+sub-0554	ses-01	5	0	0	0	0		sub-0554_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0555	ses-01	5	0	0	0	0		sub-0555_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	High amplitude of frontal channels low freq	Good	Good	Hand knob	Good	
+sub-0556	ses-01	5	0	0	0	0		sub-0556_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0557	ses-01	5	0	0	0	0		sub-0557_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0558	ses-01	5	0	0	0	0		sub-0558_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Hand knob	Good	
+sub-0559	ses-01	5	0	0	0	0		sub-0559_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Okay	Good	
+sub-0560	ses-01	5	0	0	0	0		sub-0560_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0561	ses-01	5	0	0	0	0		sub-0561_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	No spectral peaks in PSD	Good	Good	Good	Good	Reviewed with AW and confirmed inclusion
+sub-0562	ses-01	5	0	0	0	0		sub-0562_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0563	ses-01	5	0	0	0	0		sub-0563_ses-01_task-rest_run-01_meg_QC_report.html	Good	Good	Okay	Good	Good	Okay	Okay	
+sub-0598	ses-01	5	0	0	0	0		sub-0598_ses-01_task-rest_run-03_meg_QC_report.html	Spot in topo for all projs	Good	Good	Good	Good	Good	Good	
+sub-0603	ses-01	5	0	0	0	0		sub-0603_ses-01_task-rest_run-04_meg_QC_report.html	Good	Good	Good	Good	Good	Good	Good	
+sub-0603	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0607	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0608	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0609	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0610	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0611	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0612	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0613	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0614	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0615	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0617	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0618	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0619	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0620	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0621	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0622	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0623	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0624	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0625	ses-01		definitely exclude (2min; bad ecg/eog)	0	0											
+sub-0160	ses-01		definitely exclude (2min; bad ecg/eog)													

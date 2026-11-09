@@ -1,0 +1,62 @@
+---
+title: "spatiospec_demographics_manuscript"
+output: html_document
+date: "2026-05-23"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(stringr)
+knitr::opts_chunk$set(echo = TRUE)
+setwd("C:/meg/params/05_omega/omega_demographics_manuscript")
+```
+
+## OMEGA
+
+```{r}
+# Full OMEGA sample
+omega <- read.csv("sessions.tsv", sep="\t")
+
+# Participants marked "Control," "sub-0," coregistration=Yes
+omega_filt1 <- omega %>%
+  filter(coregistration == "Yes") %>%
+  group_by(participant_id) %>%
+  filter(str_detect(participant_id, "^sub-0")) %>%
+  filter(group == "Control")
+omega_filt1_size <- length(unique(omega_filt1$participant_id))
+omega_filt1_size
+
+# Participants not excluded during MEG preprocessing/quality-control
+QC_notes <- read.csv("QC_notes.tsv", sep="\t")
+omega_filt2 <- QC_notes %>%
+  filter(Inclusion == 0)
+omega_filt2_size <- length(unique(omega_filt2$Subject))
+omega_filt2_size
+omega_filt2_run_lengths <- table(omega_filt2$Length)
+omega_filt2_run_lengths
+
+# Demographics of final sample
+demo <- read.csv("OmegaQuestionnaireResponses.tsv", sep="\t")
+omega_filt2_demo <- merge(omega_filt2, omega, by.x = "Subject", by.y = "participant_id")
+omega_filt2_demo <- merge(omega_filt2_demo, demo, by.x = "Subject", by.y = "participant_id")
+# This age information is taken from the sessions.tsv file, not from the questionnaire file, because the questionnaire is missing ages. 
+# Age is age at time of MEG scan
+omega_filt2_demo$age <- as.numeric(omega_filt2_demo$age)
+omega_filt2_age_info <- round(c(mean(omega_filt2_demo$age), sd(omega_filt2_demo$age), min(omega_filt2_demo$age), max(omega_filt2_demo$age)), 2)
+omega_filt2_age_info
+omega_filt2_males_count <- count(omega_filt2_demo %>% filter(Sex == "M"))
+omega_filt2_males_count[1, 1]
+omega_filt2_demo <- omega_filt2_demo %>% mutate(total = rowSums(across(starts_with("EHI_"))))
+omega_filt2_demo$handedness_laterality_quotient <- (omega_filt2_demo$total)/4 - 100
+mean(omega_filt2_demo$handedness_laterality_quotient, na.rm = TRUE)
+
+```
+
+## Including Plots
+
+
+```{r pressure, echo=FALSE}
+
+```
+
+

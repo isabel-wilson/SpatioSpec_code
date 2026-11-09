@@ -18,7 +18,7 @@ SECTION 2: OMEGA ANALYSES
 - STEP 3 computes summary statistics for step 2
 
 SECTION 3: RELATIONSHIPS WITH AGE/COGNITION
-(demographic_cognitive_regression.R)
+(demographics_cognitive_regression.R)
 
 -------------------------------------------------------------------------------------------------------------------
 HOW TO RUN THE CODE: 
@@ -30,6 +30,7 @@ After organizing your file system as required (see DIRECTORY ORGANIZATION), run 
 There are also "supplementary" code files you may like to look at. These are: 
 - choose_st-dbscan_parameters.py - was used to choose parameters for clustering
 - demographic_stats.py - was used to compute demographic information for methods section of manuscript
+These use some of the outputs of main_analyses.py
 
 -------------------------------------------------------------------------------------------------------------------
 DIRECTORY ORGANIZATION:
@@ -43,21 +44,21 @@ SpatioSpec_code
 |   |-- CAMCAN_subject_list.txt
 |   |-- Demographics
 |   |   |-- OmegaQuestionnaireResponses.tsv # downloaded directly from OMEGA public repo
-|   |   |-- QC_notes.tsv # from OMEGA MEG preprocessing
-|   |   |-- approved_data.csv # downloaded directly from CAMCAN public repo
-|   |   |-- clean_scores.csv # downloaded directly from CAMCAN public repo
-|   |   |-- entireSampleDemographics.csv # downloaded directly from CAMCAN public repo
-|   |   `-- sessions.tsv # from OMEGA MEG preprocessing
+|   |   |-- QC_notes.tsv                    # from OMEGA MEG preprocessing
+|   |   |-- approved_data.csv               # downloaded directly from CAMCAN public repo
+|   |   |-- clean_scores.csv                # downloaded directly from CAMCAN public repo
+|   |   |-- entireSampleDemographics.csv    # downloaded directly from CAMCAN public repo
+|   |   `-- sessions.tsv                    # from OMEGA MEG preprocessing
 |   |-- Imaging_data
-|   |   |-- CAMCAN_whitened_stc # Folder of beamformed stcs; more detail below
+|   |   |-- CAMCAN_whitened_stc             # folder of beamformed stcs; more detail below
 |   |   |-- OMEGA_whitened_stc_first15
 |   |   `-- OMEGA_whitened_stc_full
 |   |-- OMEGA_first15_subject_list.txt
 |   |-- OMEGA_full_subject_list.txt
 |   |-- fs_subjects
-|   |   `-- fsaverage
-|   `-- st_dbscan.py # This script is credited to Eren Cakmak <eren.cakmak@uni-konstanz.de> and Manuel Plank <manuel.plank@uni-konstanz.de>
-`-- Scripts # This is the folder that is available on github
+|   |   `-- fsaverage                       # needs fsaverage/surf/*.sphere and *inflated
+|   `-- st_dbscan.py                        # this script is credited to Eren Cakmak <eren.cakmak@uni-konstanz.de> and Manuel Plank <manuel.plank@uni-konstanz.de>
+`-- Scripts                                 # this is the folder that is available on github
     |-- choose_st-dbscan_parameters.py
     |-- demographic_stats.R
     |-- demographics_cognitive_regression.R
@@ -159,4 +160,3 @@ SpatioSpec_code
     |-- demographic_stats.R
     |-- demographics_cognitive_regression.R
     `-- main_analyses.py
-
