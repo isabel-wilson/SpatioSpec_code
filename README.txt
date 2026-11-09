@@ -1,15 +1,15 @@
-Code for the "SpatioSpec" paper. 
+Code for the "SpatioSpec" paper. Reproducible! Self-contained! Commented! Well-organized! Explained for reviewers!
 
 -------------------------------------------------------------------------------------------------------------------
 HOW TO REPRODUCE THIS PAPER
 
-Upon request, we will send you all the input files you need, pre-organized in the "INPUT" format described below. 
+Upon request, we will send you input files; they will be pre-organized in the "INPUT" format described below. 
 
-To reproduce this paper, you should run the following two scripts, in the following order: 
+To reproduce this paper, you should click "run" on the following two scripts, in the following order: 
 1. main_analyses.py
 2. demographics_cognitive_regression.py
 
-You will need these packages: numpy pandas matplotlib mne neuromaps nibabel diptest pyarrow scipy scikit-learn. Outputs will appear in the "OUTPUT" format (described below). If you would not like to generate them yourself, these outputs are, too, available upon request. 
+You will need these packages: numpy pandas matplotlib mne neuromaps nibabel diptest pyarrow scipy scikit-learn. You will need to set your base_dir variable. Outputs will appear in the "OUTPUT" format (described below). If you would not like to generate outputs yourself, these output files are, too, available upon request. 
 
 There are also "supplementary" code files that are not essential for reproducing the analyses, but that you may like to run to better understand the project. These are: 
 - choose_st-dbscan_parameters.py - was used to choose parameters for clustering
