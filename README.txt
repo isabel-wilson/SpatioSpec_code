@@ -139,7 +139,7 @@ SpatioSpec_code
     `-- main_analyses.py
 
 -------------------------------------------------------------------------------------------------------------------
-FAQ
+FAQ (frequently-asked questions)
 
 What do I need to change in the script? base_dir = .../SpatioSpec_code/Data/
 
