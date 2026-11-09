@@ -27,21 +27,17 @@ app$subject <- paste0("sub-", app$subject)
 demo_acer <- merge(app, scores, by="subject")
 
 # Distances
-compute_avg_distances <- function(file_paths, col_names) {
-  
-  process_file <- function(file_path, col_name) {
-    distances <- read_feather(file_path)
-    distances$subject <- paste0("sub-CC", distances$subject)
-    
-    distances %>%
-      filter(freq >= 8) %>%
-      group_by(subject) %>%
-      summarise(
-        !!paste0("avdist_", col_name) := mean(distance),
-        .groups = "drop")}
-  
-  Map(process_file, file_paths, col_names) %>%
-    reduce(full_join, by = "subject")}
+# For one cluster and hemi, get each subject's average distance across frequencies
+compute_avg_distances <- function(clustername, hemi) {
+  distances <- read_feather(glue("{base_dir}/CAMCAN_individual_distances_from_centroid_cluster_{clustername}_{hemi}.rds"))
+  distances$subject <- paste0("sub-CC", distances$subject)
+  avg <- distances %>%
+    filter(freq >= 8) %>%
+    group_by(subject) %>%
+    summarise(avdist = mean(distance))
+  colnames(avg)[colnames(avg)=="avdist"] <- paste0("avdist_", hemi)
+  return(avg)
+}
 
 #-------------------------------------------------------------------------------
 #------ CLUSTER: LARGE ---------------------------------------------------------
@@ -49,10 +45,9 @@ compute_avg_distances <- function(file_paths, col_names) {
 clustername = "large"
 
 # These input files are the distance of the individual peaks *in the large cluster* from the centroid of the large cluster
-df_distances <- compute_avg_distances(
-  file_paths = c(paste0(base_dir, glue("/CAMCAN_individual_distances_from_centroid_cluster_{clustername}_lh.rds")), 
-                 paste0(base_dir, glue("/CAMCAN_individual_distances_from_centroid_cluster_{clustername}_rh.rds"))),
-  col_names = c(glue("lh"), glue("rh")))
+lh <- compute_avg_distances(clustername, "lh")
+rh <- compute_avg_distances(clustername, "rh")
+df_distances <- merge(lh, rh, by = "subject")
 
 # Average over both hemis
 # Reverse to obtain a measure of expression
@@ -125,11 +120,10 @@ ggsave(glue("{base_dir}/plots/Fig4B.png"), width = 5, height = 5, dpi = 300)
 
 clustername = "small"
 
-# These input files are the distance of the individual peaks *in the small cluster* from the centroid of the large cluster
-df_distances <- compute_avg_distances(
-  file_paths = c(paste0(base_dir, glue("/CAMCAN_individual_distances_from_centroid_cluster_{clustername}_lh.rds")), 
-                 paste0(base_dir, glue("/CAMCAN_individual_distances_from_centroid_cluster_{clustername}_rh.rds"))),
-  col_names = c(glue("lh"), glue("rh")))
+# These input files are the distance of the individual peaks *in the small cluster* from the centroid of the small cluster
+lh <- compute_avg_distances(clustername, "lh")
+rh <- compute_avg_distances(clustername, "rh")
+df_distances <- merge(lh, rh, by = "subject")
 
 # Average over both hemis
 # Reverse to obtain a measure of expression
