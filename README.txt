@@ -43,8 +43,6 @@ SpatioSpec_code
     |-- demographics_cognitive_regression.R
     `-- main_analyses.py
 
-base_dir = .../SpatioSpec_code/Data/
-
 -------------------------------------------------------------------------------------------------------------------
 ORGANIZATION OF OUTPUT FILES
 
@@ -139,3 +137,13 @@ SpatioSpec_code
     |-- demographic_stats.R
     |-- demographics_cognitive_regression.R
     `-- main_analyses.py
+
+-------------------------------------------------------------------------------------------------------------------
+FAQ
+
+What do I need to change in the script? base_dir = .../SpatioSpec_code/Data/
+
+-------------------------------------------------------------------------------------------------------------------
+UAQ (unfrequently-asked questions)
+
+How long did this take to set up? 18 nearly-consecutive hours
