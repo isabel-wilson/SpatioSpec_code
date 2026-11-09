@@ -21,6 +21,9 @@ SECTION 2: OMEGA ANALYSES
 - STEP 3 computes summary statistics for step 2
 
 ---------------------------------------------------------------------------------------------------------------------
+More information about beamformed stcs: Source-imaged, whitened PSD for each subject in fsaverage space. The data attribute is an array of vertices x frequency (157 frequencies, from 1-40 Hz in 0.25 Hz steps). Each value is the difference between the power and aperiodic fit; it can be negative when the aperiodic fit is higher than the power. stc.tmin = 1 (representing the lowest frequency) and stc.tstep=0.25 (representing the frequency resolution). Saved as {subject}_psd_beamformer_fsaverage_whitened-lh.stc and {subject}_psd_beamformer_fsaverage_whitened-rh.stc.
+
+---------------------------------------------------------------------------------------------------------------------
 """
 
 # -------------------------------------------------------------------------------------------------------------------
@@ -622,7 +625,6 @@ Outputs are saved to the folder omega-camcan_distance_cluster1
 """
 # -------------------------------------------------------------------------------------------------------------------
 
-np.random.seed(0)
 
 # Loop over stuff
 for binlength in [1, 2, 4, 8, 11]:
@@ -784,6 +786,6 @@ with open(f'{base_dir}/plots/TableS1.txt', 'w') as file:
          actual = 100 - np.loadtxt(f'{distance_data_dir}/actual_{sh}.txt')
          p = np.sum((null >= actual)) / (len(null))
          row.append(f'min: {str(null_min)}, max: {str(null_max)}, p: {str(p)}')
-      print(*row, sep='\t', file=file)
+      print(*row, file=file)
 
 # %%

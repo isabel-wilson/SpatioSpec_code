@@ -80,7 +80,6 @@ ggplot(data = df, aes(x = age, y = expression)) +
 # Save
 capture.output(summary(output), file = glue("{base_dir}/plots/Fig4A_regression_stats.txt"))
 ggsave(glue("{base_dir}/plots/Fig4A.png"), width = 5, height = 5, dpi = 300)
-print(len(df))
 
 #----- STATS: EXPRESSION RES ~ ACER RES --------------------------------------
 df <- df[df$additional_acer != 0, ]

@@ -1,73 +1,52 @@
-Code for the "SpatioSpec" project. 
+Code for the "SpatioSpec" paper. 
 
 -------------------------------------------------------------------------------------------------------------------
-CONCEPTUAL OVERVIEW: 
+HOW TO REPRODUCE THIS PAPER
 
-SECTION 1: CAMCAN ANALYSES
-(main_analyses.py)
-- STEP 1 computes participant-level frequency-wise oscillatory peaks
-- STEP 2 runs ST-DBSCAN
-- STEP 3 computes the centroids of large and small clusters
-- STEP 4 computes the "distance" of individual participants' clusters from these centroids
-- STEP 5 tests colocalization with the FC gradient
+Upon request, we will send you all the input files you need, pre-organized in the "INPUT" format described below. 
 
-SECTION 2: OMEGA ANALYSES
-(main_analyses.py)
-- STEP 1 computes participant-level frequency-wise oscillatory peaks
-- STEP 2 computes actual and permuted distance of step 1 outputs from the centroids of the CAM-CAN data
-- STEP 3 computes summary statistics for step 2
-
-SECTION 3: RELATIONSHIPS WITH AGE/COGNITION
-(demographics_cognitive_regression.R)
-
--------------------------------------------------------------------------------------------------------------------
-HOW TO RUN THE CODE: 
-
-After organizing your file system as required (see DIRECTORY ORGANIZATION), run scripts in order:
+To reproduce this paper, you should run the following two scripts, in the following order: 
 1. main_analyses.py
 2. demographics_cognitive_regression.py
 
-There are also "supplementary" code files you may like to look at. These are: 
+You will need these packages: numpy pandas matplotlib mne neuromaps nibabel diptest pyarrow scipy scikit-learn. Outputs will appear in the "OUTPUT" format (described below). If you would not like to generate them yourself, these outputs are, too, available upon request. 
+
+There are also "supplementary" code files that are not essential for reproducing the analyses, but that you may like to run to better understand the project. These are: 
 - choose_st-dbscan_parameters.py - was used to choose parameters for clustering
 - demographic_stats.py - was used to compute demographic information for methods section of manuscript
-These use some of the outputs of main_analyses.py
 
 -------------------------------------------------------------------------------------------------------------------
-DIRECTORY ORGANIZATION:
-
-base_dir = .../SpatioSpec_code/Data/ # Set your base_dir variable to this
-
-INPUTS: Before running scripts, please organize your files like this:
+ORGANIZATION OF INPUT FILES
 
 SpatioSpec_code
 |-- Data
-|   |-- CAMCAN_subject_list.txt
+|   |-- CAMCAN_subject_list.txt             # list of subjects used; available upon request
 |   |-- Demographics
-|   |   |-- OmegaQuestionnaireResponses.tsv # downloaded directly from OMEGA public repo
-|   |   |-- QC_notes.tsv                    # from OMEGA MEG preprocessing
-|   |   |-- approved_data.csv               # downloaded directly from CAMCAN public repo
-|   |   |-- clean_scores.csv                # downloaded directly from CAMCAN public repo
-|   |   |-- entireSampleDemographics.csv    # downloaded directly from CAMCAN public repo
-|   |   `-- sessions.tsv                    # from OMEGA MEG preprocessing
+|   |   |-- OmegaQuestionnaireResponses.tsv # from OMEGA public repo
+|   |   |-- QC_notes.tsv                    # from in-lab OMEGA MEG preprocessing; available upon request
+|   |   |-- approved_data.csv               # from CAMCAN public repo
+|   |   |-- clean_scores.csv                # from CAMCAN public repo
+|   |   |-- entireSampleDemographics.csv    # from CAMCAN public repo
+|   |   `-- sessions.tsv                    # from in-lab OMEGA MEG preprocessing; available upon request
 |   |-- Imaging_data
-|   |   |-- CAMCAN_whitened_stc             # folder of beamformed stcs; more detail below
-|   |   |-- OMEGA_whitened_stc_first15
-|   |   `-- OMEGA_whitened_stc_full
-|   |-- OMEGA_first15_subject_list.txt
-|   |-- OMEGA_full_subject_list.txt
+|   |   |-- CAMCAN_whitened_stc             # input imaging data; available upon request
+|   |   |-- OMEGA_whitened_stc_first15      # input imaging data; available upon request
+|   |   `-- OMEGA_whitened_stc_full         # input imaging data; available upon request
+|   |-- OMEGA_first15_subject_list.txt      # list of subjects used; available upon request
+|   |-- OMEGA_full_subject_list.txt         # list of subjects used; available upon request
 |   |-- fs_subjects
-|   |   `-- fsaverage                       # needs fsaverage/surf/*.sphere and *inflated
-|   `-- st_dbscan.py                        # this script is credited to Eren Cakmak <eren.cakmak@uni-konstanz.de> and Manuel Plank <manuel.plank@uni-konstanz.de>
-`-- Scripts                                 # this is the folder that is available on github
+|   |   `-- fsaverage                       # from FreeSurfer
+|   `-- st_dbscan.py                        # from https://github.com/eren-ck/st_dbscan (Eren Cakmak and Manuel Plank)
+`-- Scripts                                 # available from https://github.com/isabel-wilson/SpatioSpec_code 
     |-- choose_st-dbscan_parameters.py
     |-- demographic_stats.R
     |-- demographics_cognitive_regression.R
     `-- main_analyses.py
 
-More information about beamformed stcs: Source-imaged, whitened PSD for each subject in fsaverage space. The data attribute is an array of vertices x frequency (157 frequencies, from 1-40 Hz in 0.25 Hz steps). Each value is the difference between the power and aperiodic fit; it can be negative when the aperiodic fit is higher than the power. stc.tmin = 1 (representing the lowest frequency) and stc.tstep=0.25 (representing the frequency resolution). Saved as {subject}_psd_beamformer_fsaverage_whitened-lh.stc and {subject}_psd_beamformer_fsaverage_whitened-rh.stc.
+base_dir = .../SpatioSpec_code/Data/
 
-
-OUTPUTS: After running scripts, this is what your file system will look like:
+-------------------------------------------------------------------------------------------------------------------
+ORGANIZATION OF OUTPUT FILES
 
 SpatioSpec_code
 |-- Data
