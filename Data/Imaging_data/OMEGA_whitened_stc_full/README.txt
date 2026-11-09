@@ -1,1 +1,0 @@
-This is where you should put your whitened beamformed PSDs morphed to fsaverage. Please contact for data. 
