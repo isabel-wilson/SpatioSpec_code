@@ -23,6 +23,7 @@ SECTION 2: OMEGA ANALYSES
 ---------------------------------------------------------------------------------------------------------------------
 More information about beamformed stcs: Source-imaged, whitened PSD for each subject in fsaverage space. The data attribute is an array of vertices x frequency (157 frequencies, from 1-40 Hz in 0.25 Hz steps). Each value is the difference between the power and aperiodic fit; it can be negative when the aperiodic fit is higher than the power. stc.tmin = 1 (representing the lowest frequency) and stc.tstep=0.25 (representing the frequency resolution). Saved as {subject}_psd_beamformer_fsaverage_whitened-lh.stc and {subject}_psd_beamformer_fsaverage_whitened-rh.stc.
 
+What non-standard Python packages might I need to install? mne neuromaps nibabel diptest pyarrow scikit-learn
 ---------------------------------------------------------------------------------------------------------------------
 """
 

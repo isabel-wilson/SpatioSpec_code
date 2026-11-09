@@ -1,4 +1,4 @@
-Code for the "SpatioSpec" paper. Reproducible! Self-contained! Commented! Well-organized! Explained for reviewers!
+Code for the "SpatioSpec" paper. Reproducible! Commented! Well-organized! Explained for reviewers!
 
 -------------------------------------------------------------------------------------------------------------------
 HOW TO REPRODUCE THIS PAPER
@@ -142,8 +142,6 @@ SpatioSpec_code
 FAQ (frequently-asked questions)
 
 What do I need to change in the script? base_dir = .../SpatioSpec_code/Data/
-
-What non-standard Python packages might I need to install? mne neuromaps nibabel diptest pyarrow scikit-learn
 
 -------------------------------------------------------------------------------------------------------------------
 UAQ (unfrequently-asked questions)
