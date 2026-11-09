@@ -23,8 +23,7 @@ SECTION 3: RELATIONSHIPS WITH AGE/COGNITION
 -------------------------------------------------------------------------------------------------------------------
 HOW TO RUN THE CODE: 
 
-After organizing your file system (see DIRECTORY ORGANIZATION), run scripts in the following order. The only variable you should have to change should be "base_dir" (i.e., your main directory). 
-
+After organizing your file system as required (see DIRECTORY ORGANIZATION), run scripts in order:
 1. main_analyses.py
 2. demographics_cognitive_regression.py
 
@@ -65,10 +64,6 @@ SpatioSpec_code
     `-- main_analyses.py
 
 More information about beamformed stcs: Source-imaged, whitened PSD for each subject in fsaverage space. The data attribute is an array of vertices x frequency (157 frequencies, from 1-40 Hz in 0.25 Hz steps). Each value is the difference between the power and aperiodic fit; it can be negative when the aperiodic fit is higher than the power. stc.tmin = 1 (representing the lowest frequency) and stc.tstep=0.25 (representing the frequency resolution). Saved as {subject}_psd_beamformer_fsaverage_whitened-lh.stc and {subject}_psd_beamformer_fsaverage_whitened-rh.stc.
-
-Importantly, note that the following material did not come from me: 
-- st_dbscan.py -- as noted above, this script comes from Eren Cakmak <eren.cakmak@uni-konstanz.de> and Manuel Plank <manuel.plank@uni-konstanz.de>
-- CAMCAN/OMEGA demographics 
 
 
 OUTPUTS: After running scripts, this is what your file system will look like:
