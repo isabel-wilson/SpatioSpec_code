@@ -116,7 +116,7 @@ SpatioSpec_code
 |   |   |-- null_5000perms_8_first15_rh.txt
 |   |   |-- null_5000perms_8_full_lh.txt
 |   |   `-- null_5000perms_8_full_rh.txt
-|   |-- plots
+|   |-- plots                               # statistics and simple plots that can be used for checking the paper  
 |   |   |-- FCgradient_colocalization_summary.txt
 |   |   |-- Fig2B_lh_8-30Hz_bestparams_9_0.0319_0.5_clusters.png
 |   |   |-- Fig2B_lh_8-30Hz_bestparams_9_0.0319_0.5_large.png
