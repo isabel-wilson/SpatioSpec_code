@@ -9,7 +9,7 @@ To reproduce this paper, you should click "run" on the following two scripts, in
 1. main_analyses.py
 2. demographics_cognitive_regression.py
 
-You will need these packages: numpy pandas matplotlib mne neuromaps nibabel diptest pyarrow scipy scikit-learn. You will need to set your base_dir variable. Outputs will appear in the "OUTPUT" format (described below). If you would not like to generate outputs yourself, these output files are, too, available upon request. 
+You may need to install these packages: mne neuromaps nibabel diptest pyarrow scikit-learn. Outputs will appear in the "OUTPUT" format (described below). If you would not like to generate outputs yourself, these output files are, too, available upon request. 
 
 There are also "supplementary" code files that are not essential for reproducing the analyses, but that you may like to run to better understand the project. These are: 
 - choose_st-dbscan_parameters.py - was used to choose parameters for clustering
@@ -138,10 +138,12 @@ SpatioSpec_code
     |-- demographics_cognitive_regression.R
     `-- main_analyses.py
 
+
 -------------------------------------------------------------------------------------------------------------------
 FAQ (frequently-asked questions)
 
 What do I need to change in the script? base_dir = .../SpatioSpec_code/Data/
+
 
 -------------------------------------------------------------------------------------------------------------------
 UAQ (unfrequently-asked questions)
