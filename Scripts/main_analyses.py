@@ -42,7 +42,7 @@ import mne
 # Set directories
 # -------------------------------------------------------------------------------------------------------------------
 
-base_dir = "scratch/isw3/SpatioSpec/Data/" # USER INPUT
+base_dir = "/scratch/isw3/SpatioSpec/Data/" # USER INPUT
 
 fs_dir = f"{base_dir}/fs_subjects"
 
@@ -554,7 +554,7 @@ Does this separately for each segment (full scan or first 15 seconds)
 
 Input:
 - OMEGA_{segment}_subject_list.txt
-- Imaging_data/OMEGA_whitened_stc_{segment} folder of {subject}_*_psd_beamformer_fsaverage_whitened-{hemi}.stc
+- Imaging_data/OMEGA_whitened_stc_{segment} folder of {subject}_*psd_beamformer_fsaverage_whitened-{hemi}.stc
 
 Output:
 - OMEGA_individual_peaks_{segment}_{hemi}.pkl - for each subject and frequency, the coordinates of the peak power in that frequency

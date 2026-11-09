@@ -1,4 +1,4 @@
-Code and data for the "SpatioSpec" project. 
+Code for the "SpatioSpec" project. Data files are too large to upload to GitHub. 
 
 -------------------------------------------------------------------------------------------------------------------
 CONCEPTUAL OVERVIEW: 

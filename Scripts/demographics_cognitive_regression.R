@@ -30,7 +30,6 @@ demo_acer <- merge(app, scores, by="subject")
 # For one cluster and hemi, get each subject's average distance across frequencies
 compute_avg_distances <- function(clustername, hemi) {
   distances <- read_feather(glue("{base_dir}/CAMCAN_individual_distances_from_centroid_cluster_{clustername}_{hemi}.rds"))
-  distances$subject <- paste0("sub-CC", distances$subject)
   avg <- distances %>%
     filter(freq >= 8) %>%
     group_by(subject) %>%
