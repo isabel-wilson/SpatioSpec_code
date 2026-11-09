@@ -18,7 +18,6 @@ acer <- read.csv(paste0(demo_dir, "clean_scores.csv"))
 demo <- read.csv(paste0(demo_dir, "entireSampleDemographics.csv"))
 colnames(acer)[colnames(acer)=="ID"] <- "subject"
 brain <- read_feather(list.files(base_dir, pattern = "^CAMCAN_individual_distances", full.names = TRUE)[1]) # Get an example file of processed data
-brain$subject <- paste0("sub-CC", brain$subject)
 
 brain_summary <- brain %>% group_by(subject) %>% count()
 nrow(brain_summary) # 604
@@ -32,15 +31,15 @@ nrow(brains_with_acer) # 604
 # Full CAMCAN brain sample
 max(brains_with_demo$age)
 min(brains_with_demo$age)
-round(mean(brains_with_demo$age))
-round(sd(brains_with_demo$age))
+round(mean(brains_with_demo$age), 2)
+round(sd(brains_with_demo$age), 2)
 nrow(brains_with_demo %>% filter(sex == "MALE"))
 
 # CAMCAN cognitive sample
 max(brains_with_acer$age)
 min(brains_with_acer$age)
-round(mean(brains_with_acer$age))
-round(sd(brains_with_acer$age))
+round(mean(brains_with_acer$age), 2)
+round(sd(brains_with_acer$age), 2)
 nrow(brains_with_acer %>% filter(sex == "MALE"))
 
 

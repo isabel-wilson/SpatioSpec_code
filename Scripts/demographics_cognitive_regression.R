@@ -80,7 +80,7 @@ ggplot(data = df, aes(x = age, y = expression)) +
 # Save
 capture.output(summary(output), file = glue("{base_dir}/plots/Fig4A_regression_stats.txt"))
 ggsave(glue("{base_dir}/plots/Fig4A.png"), width = 5, height = 5, dpi = 300)
-
+print(len(df))
 
 #----- STATS: EXPRESSION RES ~ ACER RES --------------------------------------
 df <- df[df$additional_acer != 0, ]
@@ -137,4 +137,17 @@ df <- merge(df_distances, demo_acer, by="subject")
 #----- STATS: EXPRESSION ~ AGE -------------------------------------------------
 output <- lm(expression ~ age, data = df)
 summary(output)
-capture.output(summary(output), file = glue("{base_dir}/plots/small_cluster_regression_stats.txt"))
+capture.output(summary(output), file = glue("{base_dir}/plots/small_cluster_regression_stats_age.txt"))
+
+#----- STATS: EXPRESSION RES ~ ACER RES --------------------------------------
+df <- df[df$additional_acer != 0, ]
+
+model <- lm(additional_acer ~ age, data = df)
+res_acer <- resid(model)
+
+model <- lm(expression ~ age, data = df)
+res_expression <- resid(model)
+
+output <- lm(res_expression ~ res_acer, data = df)
+summary(output)
+capture.output(summary(output), file = glue("{base_dir}/plots/small_cluster_regression_stats_cognitive.txt"))
