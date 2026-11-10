@@ -50,20 +50,29 @@ SpatioSpec_code
 |-- Data
 |   |-- CAMCAN_avdist_demo_acer.txt         # table organizing individual demographics, cognitive scores, and gradient expression
 |   |-- CAMCAN_centroids_large_lh.pkl       # centroids of cluster. 8 files of this format (large, small; lh, rh; xyz coords, vertex)
+|   |-- ... 
 |   |-- CAMCAN_individual_distances_from_centroid_cluster_large_lh.rds     # distance of in-cluster peaks from centroid of cluster. 4 files of this format (large, small; lh, rh)
+|   |-- ... 
 |   |-- CAMCAN_individual_peaks_lh.pkl      # individual peaks. 8 files of this format (lh, rh; unnormalized, normalized; xyz coords, vertex)
-|   |-- CAMCAN_subject_list.txt
+|   |-- ... 
+|   |-- CAMCAN_subject_list.txt             # same as input
 |   |-- Demographics                        # folder; contents same as input
+|   |    |--...
 |   |-- Imaging_data                        # folder; contents same as input
-|   |-- OMEGA_first15_subject_list.txt
-|   |-- OMEGA_full_subject_list.txt
+|   |    |--...
+|   |-- OMEGA_first15_subject_list.txt      # same as input
+|   |-- OMEGA_full_subject_list.txt         # same as input
 |   |-- OMEGA_individual_peaks_first15_lh.pkl   # individual peaks. 4 files of this format (first15, full; lh, rh)
+|   |-- ... 
 |   |-- fs_subjects                         # folder; contents same as input
+|   |    |--...
 |   |-- labels_lh_8-30Hz_bestparams_9_0.0319_0.5.pkl     # cluster labels for st-dbscan (lh)
 |   |-- labels_rh_8-30Hz_bestparams_9_0.0319_0.5.pkl     # cluster labels for st-dbscan (rh)
 |   |-- omega-camcan_distance_cluster1
 |   |   |-- actual_first15_lh.txt                 # distance of peaks from centroid. 4 files of this format (first15, full; lh, rh)
+|   |   |-- ... 
 |   |   |-- null_5000perms_11_first15_lh.txt      # 5000 permutations of distance. 20 files of this format (bin lengths 1, 2, 4, 11; first15, full; lh, rh)
+|   |   |-- ... 
 |   |-- plots                               # statistics and simple plots that can be used for checking the paper  
 |   |   |-- FCgradient_colocalization_summary.txt
 |   |   |-- Fig2B_lh_8-30Hz_bestparams_9_0.0319_0.5_clusters.png
@@ -83,6 +92,7 @@ SpatioSpec_code
 |   |   `-- small_cluster_regression_stats.txt
 |   `-- st_dbscan.py
 `-- Scripts                                 # folder; contents same as input
+|   |-- ... 
 
 -------------------------------------------------------------------------------------------------------------------
 FAQ (frequently-asked questions)
