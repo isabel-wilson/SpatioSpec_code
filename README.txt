@@ -3,7 +3,7 @@ Code for the "SpatioSpec" paper. Reproducible! Commented! Well-organized! Explai
 -------------------------------------------------------------------------------------------------------------------
 HOW TO REPRODUCE THIS PAPER
 
-Upon request, we will send you input files; they will be pre-organized in the "INPUT" format described below. 
+Upon request, we will send you input files pre-organized in the "INPUT" format described below. 
 
 To reproduce this paper, you should click "run" on the following two scripts, in the following order: 
 1. main_analyses.py
@@ -48,73 +48,32 @@ ORGANIZATION OF OUTPUT FILES
 
 SpatioSpec_code
 |-- Data
-|   |-- CAMCAN_avdist_demo_acer.txt
-|   |-- CAMCAN_centroids_large_lh.pkl
-|   |-- CAMCAN_centroids_large_lh_vertex.pkl
-|   |-- CAMCAN_centroids_large_rh.pkl
-|   |-- CAMCAN_centroids_large_rh_vertex.pkl
-|   |-- CAMCAN_centroids_small_lh.pkl
-|   |-- CAMCAN_centroids_small_lh_vertex.pkl
-|   |-- CAMCAN_centroids_small_rh.pkl
-|   |-- CAMCAN_centroids_small_rh_vertex.pkl
-|   |-- CAMCAN_individual_distances_from_centroid_cluster_large_lh.rds
-|   |-- CAMCAN_individual_distances_from_centroid_cluster_large_rh.rds
-|   |-- CAMCAN_individual_distances_from_centroid_cluster_small_lh.rds
-|   |-- CAMCAN_individual_distances_from_centroid_cluster_small_rh.rds
-|   |-- CAMCAN_individual_peaks_lh.pkl
-|   |-- CAMCAN_individual_peaks_lh_normalized.pkl
-|   |-- CAMCAN_individual_peaks_lh_vertex.pkl
-|   |-- CAMCAN_individual_peaks_rh.pkl
-|   |-- CAMCAN_individual_peaks_rh_normalized.pkl
-|   |-- CAMCAN_individual_peaks_rh_vertex.pkl
-|   |-- CAMCAN_subject_list.txt
-|   |-- Demographics
-|   |   |-- OmegaQuestionnaireResponses.tsv
-|   |   |-- QC_notes.tsv
-|   |   |-- approved_data.csv
-|   |   |-- clean_scores.csv
-|   |   |-- entireSampleDemographics.csv
-|   |   `-- sessions.tsv
-|   |-- Imaging_data
-|   |   |-- CAMCAN_whitened_stc
-|   |   |-- OMEGA_whitened_stc_first15
-|   |   `-- OMEGA_whitened_stc_full
-|   |-- OMEGA_first15_subject_list.txt
-|   |-- OMEGA_full_subject_list.txt
-|   |-- OMEGA_individual_peaks_first15_lh.pkl
-|   |-- OMEGA_individual_peaks_first15_rh.pkl
-|   |-- OMEGA_individual_peaks_full_lh.pkl
-|   |-- OMEGA_individual_peaks_full_rh.pkl
-|   |-- fs_subjects
-|   |   `-- fsaverage
-|   |-- labels_lh_8-30Hz_bestparams_9_0.0319_0.5.pkl
-|   |-- labels_rh_8-30Hz_bestparams_9_0.0319_0.5.pkl
+|   |-- CAMCAN_avdist_demo_acer.txt                      # table organizing individual demographics, cognitive scores, and gradient expression
+|   |-- CAMCAN_centroids_large_lh.pkl                    # centroids of cluster. 8 files of this format (large, small; lh, rh; xyz coords, vertex)
+|   |-- ... 
+|   |-- CAMCAN_individual_distances_from_centroid_cluster_large_lh.rds     # distance of in-cluster peaks from centroid of cluster. 4 files of this format (large, small; lh, rh)
+|   |-- ... 
+|   |-- CAMCAN_individual_peaks_lh.pkl                   # individual peaks. 8 files of this format (lh, rh; unnormalized, normalized; xyz coords, vertex)
+|   |-- ... 
+|   |-- CAMCAN_subject_list.txt                          # same as input
+|   |-- Demographics                                     # folder; contents same as input
+|   |    |--...
+|   |-- Imaging_data                                     # folder; contents same as input
+|   |    |--...
+|   |-- OMEGA_first15_subject_list.txt                   # same as input
+|   |-- OMEGA_full_subject_list.txt                      # same as input
+|   |-- OMEGA_individual_peaks_first15_lh.pkl            # individual peaks. 4 files of this format (first15, full; lh, rh)
+|   |-- ... 
+|   |-- fs_subjects                                      # folder; contents same as input
+|   |    |--...
+|   |-- labels_lh_8-30Hz_bestparams_9_0.0319_0.5.pkl     # cluster labels for st-dbscan (lh)
+|   |-- labels_rh_8-30Hz_bestparams_9_0.0319_0.5.pkl     # cluster labels for st-dbscan (rh)
 |   |-- omega-camcan_distance_cluster1
-|   |   |-- actual_first15_lh.txt
-|   |   |-- actual_first15_rh.txt
-|   |   |-- actual_full_lh.txt
-|   |   |-- actual_full_rh.txt
-|   |   |-- null_5000perms_11_first15_lh.txt
-|   |   |-- null_5000perms_11_first15_rh.txt
-|   |   |-- null_5000perms_11_full_lh.txt
-|   |   |-- null_5000perms_11_full_rh.txt
-|   |   |-- null_5000perms_1_first15_lh.txt
-|   |   |-- null_5000perms_1_first15_rh.txt
-|   |   |-- null_5000perms_1_full_lh.txt
-|   |   |-- null_5000perms_1_full_rh.txt
-|   |   |-- null_5000perms_2_first15_lh.txt
-|   |   |-- null_5000perms_2_first15_rh.txt
-|   |   |-- null_5000perms_2_full_lh.txt
-|   |   |-- null_5000perms_2_full_rh.txt
-|   |   |-- null_5000perms_4_first15_lh.txt
-|   |   |-- null_5000perms_4_first15_rh.txt
-|   |   |-- null_5000perms_4_full_lh.txt
-|   |   |-- null_5000perms_4_full_rh.txt
-|   |   |-- null_5000perms_8_first15_lh.txt
-|   |   |-- null_5000perms_8_first15_rh.txt
-|   |   |-- null_5000perms_8_full_lh.txt
-|   |   `-- null_5000perms_8_full_rh.txt
-|   |-- plots                               # statistics and simple plots that can be used for checking the paper  
+|   |   |-- actual_first15_lh.txt                        # distance of peaks from centroid. 4 files of this format (first15, full; lh, rh)
+|   |   |-- ... 
+|   |   |-- null_5000perms_11_first15_lh.txt             # 5000 permutations of distance. 20 files of this format (bin lengths 1, 2, 4, 11; first15, full; lh, rh)
+|   |   |-- ... 
+|   |-- plots                                            # statistics and simple plots that can be used for checking the paper  
 |   |   |-- FCgradient_colocalization_summary.txt
 |   |   |-- Fig2B_lh_8-30Hz_bestparams_9_0.0319_0.5_clusters.png
 |   |   |-- Fig2B_lh_8-30Hz_bestparams_9_0.0319_0.5_large.png
@@ -132,11 +91,8 @@ SpatioSpec_code
 |   |   |-- cluster_summary.txt
 |   |   `-- small_cluster_regression_stats.txt
 |   `-- st_dbscan.py
-`-- Scripts
-    |-- choose_st-dbscan_parameters.py
-    |-- demographic_stats.R
-    |-- demographics_cognitive_regression.R
-    `-- main_analyses.py
+`-- Scripts                                              # folder; contents same as input
+|   |-- ... 
 
 -------------------------------------------------------------------------------------------------------------------
 FAQ (frequently-asked questions)
