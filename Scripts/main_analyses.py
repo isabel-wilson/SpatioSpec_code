@@ -41,6 +41,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import mne
 
+# Import these now, but you will only need them for the fcgradient section: 
+from neuromaps.datasets import fetch_annotation
+from neuromaps.transforms import fslr_to_fsaverage
+import nibabel as nib
+import diptest
+
+# Import previously downloaded st-dbscan code: https://github.com/eren-ck/st_dbscan/blob/7591838bca5f4d138926219d3ae939cb282c39b4/src/st_dbscan/st_dbscan.py
+# You will only need this for the st-dbscan section
+sys.path.append(base_dir)
+import st_dbscan as st
+
 
 # -------------------------------------------------------------------------------------------------------------------
 # Set directories
@@ -141,6 +152,7 @@ for hemi in ["lh", "rh"]:
       file = f"{base_dir}/Imaging_data/CAMCAN_whitened_stc/{subject}_psd_beamformer_fsaverage_whitened"
       stc = mne.read_source_estimate(file)
 
+      # For each frequency, crop the stc to include only data for that frequency. Add the spatial peak to the thing
       for f in freqs:
          t_stc = stc_one_timepoint(stc, f, hemi)
 
@@ -167,6 +179,8 @@ for hemi in ["lh", "rh"]:
       pickle.dump(individual_peaks_vertices_df, f)
 
    # Normalize and write normalized version to file
+   # Normalization is to length of axis
+   # Normalized version will be used for st-dbscan
    individual_peaks_coord_df['x'] = individual_peaks_coord_df['x'] + 100
    individual_peaks_coord_df['x'] = (individual_peaks_coord_df['x'] - individual_peaks_coord_df['x'].min()) / (individual_peaks_coord_df['x'].max() - individual_peaks_coord_df['x'].min())
    individual_peaks_coord_df['y'] = individual_peaks_coord_df['y'] + 100
@@ -197,9 +211,6 @@ Also outputs things for you to look at: counts of labels and a plot/sketch of th
 """
 # -------------------------------------------------------------------------------------------------------------------
 
-# Import previously downloaded st-dbscan code: https://github.com/eren-ck/st_dbscan/blob/7591838bca5f4d138926219d3ae939cb282c39b4/src/st_dbscan/st_dbscan.py
-sys.path.append(base_dir)
-import st_dbscan as st
 
 #----- Useful functions for plotting
 
@@ -270,9 +281,6 @@ best_eps2 = 0.5
 best_minpts = 9
 
 cluster_ids = {"lh": (2, 0), "rh": (1, 0)}  # (large, small) (labelled differently by st_dbscan per hemisphere)
-
-# Clear cluster_summary.txt (each hemi is appended to it below)
-open(f"{base_dir}/plots/cluster_summary.txt", "w").close()
 
 for hemi in ["lh", "rh"]:
 
@@ -479,10 +487,6 @@ Output:
 
 """
 # -------------------------------------------------------------------------------------------------------------------
-from neuromaps.datasets import fetch_annotation
-from neuromaps.transforms import fslr_to_fsaverage
-import nibabel as nib
-import diptest
 
 #---- Prepare fcgradient data
 lh_path, rh_path = fetch_annotation(source='margulies2016', desc='fcgradient02', space='fsLR', den='32k')
