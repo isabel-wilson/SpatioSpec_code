@@ -3,7 +3,7 @@ Code for the "SpatioSpec" paper. Reproducible! Commented! Well-organized! Explai
 -------------------------------------------------------------------------------------------------------------------
 HOW TO REPRODUCE THIS PAPER
 
-Upon request, we will send you input files; they will be pre-organized in the "INPUT" format described below. 
+Upon request, we will send you input files pre-organized in the "INPUT" format described below. 
 
 To reproduce this paper, you should click "run" on the following two scripts, in the following order: 
 1. main_analyses.py
