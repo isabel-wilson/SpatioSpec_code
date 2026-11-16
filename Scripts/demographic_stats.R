@@ -14,19 +14,15 @@ demo_dir = paste0(base_dir, "Demographics/") # Folder of demographics/cognitive 
 ##### CAMCAN
 
 # Load data
-acer <- read.csv(paste0(demo_dir, "clean_scores.csv"))
-demo <- read.csv(paste0(demo_dir, "entireSampleDemographics.csv"))
-colnames(acer)[colnames(acer)=="ID"] <- "subject"
+demo <- read.csv(paste0(demo_dir, "clean_scores.csv"))
+colnames(demo)[colnames(demo)=="ID"] <- "subject"
 brain <- read_feather(list.files(base_dir, pattern = "^CAMCAN_individual_distances", full.names = TRUE)[1]) # Get an example file of processed data
 
 brain_summary <- brain %>% group_by(subject) %>% count()
 nrow(brain_summary) # 604
 
 brains_with_demo <- merge(brain_summary, demo, by.x = "subject")
-nrow(brains_with_demo) # 604
-
-brains_with_acer <- merge(brain_summary, acer, by.x = "subject")
-nrow(brains_with_acer) # 604
+nrow(brains_with_demo) # 593
 
 # Full CAMCAN brain sample
 max(brains_with_demo$age)
@@ -34,13 +30,6 @@ min(brains_with_demo$age)
 round(mean(brains_with_demo$age), 2)
 round(sd(brains_with_demo$age), 2)
 nrow(brains_with_demo %>% filter(sex == "MALE"))
-
-# CAMCAN cognitive sample
-max(brains_with_acer$age)
-min(brains_with_acer$age)
-round(mean(brains_with_acer$age), 2)
-round(sd(brains_with_acer$age), 2)
-nrow(brains_with_acer %>% filter(sex == "MALE"))
 
 
 ##### OMEGA

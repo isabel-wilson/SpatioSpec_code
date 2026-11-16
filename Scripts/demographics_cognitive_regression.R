@@ -17,15 +17,9 @@ demo_dir = paste0(base_dir, "Demographics/")
 
 #----- SET UP FOR DATAFRAME ----------------------------------------------------
 
-# Demographics and ACER
-scores <- read.csv(glue("{demo_dir}/clean_scores.csv"))
-colnames(scores)[colnames(scores)=="ID"] <- "subject"
-
-app <- read.csv(glue("{demo_dir}/approved_data.csv"), sep="\t")
-colnames(app)[colnames(app)=="CCID"] <- "subject"
-app$subject <- paste0("sub-", app$subject)
-
-demo_acer <- merge(app, scores, by="subject")
+# Demographics
+demo <- read.csv(glue("{demo_dir}/clean_scores.csv"))
+colnames(demo)[colnames(demo)=="ID"] <- "subject"
 
 # Distances
 # For one cluster and hemi, get each subject's average distance across frequencies
@@ -65,13 +59,12 @@ df_distances <- df_distances %>%
   mutate(expression = 100 - avdist_avg)
 
 # Merge and save
-df <- merge(df_distances, demo_acer, by="subject")
+df <- merge(df_distances, demo, by="subject")
 write.table(df, glue("{base_dir}/CAMCAN_avdist_demo_acer.txt"))
 
 
 #----- STATS: EXPRESSION ~ AGE -------------------------------------------------
 output <- lm(expression ~ age, data = df)
-lm.beta(output)
 summary(output)
 
 # Plot
@@ -91,38 +84,6 @@ ggplot(data = df, aes(x = age, y = expression)) +
 # Save
 capture.output(summary(output), file = glue("{base_dir}/plots/Fig4A_regression_stats.txt"))
 ggsave(glue("{base_dir}/plots/Fig4A.png"), width = 5, height = 5, dpi = 300)
-
-#----- STATS: EXPRESSION RES ~ ACER RES --------------------------------------
-df <- df[df$additional_acer != 0, ]
-
-model <- lm(additional_acer ~ age, data = df)
-res_acer <- resid(model)
-
-model <- lm(expression ~ age, data = df)
-res_expression <- resid(model)
-
-output <- lm(res_expression ~ res_acer, data = df)
-lm.beta(output)
-summary(output)
-
-# Plot
-ggplot(data = df, aes(x = res_acer, y = res_expression)) + 
-  geom_point(color = "#fc7d7d", size = 2) + 
-  geom_smooth(method = "lm", linewidth = 2, color = "black") +
-  theme_classic() + 
-  labs(
-    y = "gradient expression (age-regressed)",
-    x = "acer (age-regressed)"
-  ) + 
-  theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 16),
-    aspect.ratio = 1) 
-
-# Save
-capture.output(summary(output), file = glue("{base_dir}/plots/Fig4B_regression_stats.txt"))
-ggsave(glue("{base_dir}/plots/Fig4B.png"), width = 5, height = 5, dpi = 300)
-
 
 
 
@@ -152,13 +113,12 @@ df_distances <- df_distances %>%
   mutate(expression = 100 - avdist_avg)
 
 # Merge and save
-df <- merge(df_distances, demo_acer, by="subject")
+df <- merge(df_distances, demo, by="subject")
 write.table(df, glue("{base_dir}/CAMCAN_avdist_demo_acer.txt"))
 
 
 #----- STATS: EXPRESSION ~ AGE -------------------------------------------------
 output <- lm(expression ~ age, data = df)
-lm.beta(output)
 summary(output)
 
 # Plot
@@ -167,79 +127,3 @@ abline(a = output$coefficients[1], b = output$coefficients[2])
 
 # Save
 capture.output(summary(output), file = glue("{base_dir}/plots/all_points_regression_age.txt"))
-
-#----- STATS: EXPRESSION RES ~ ACER RES --------------------------------------
-df <- df[df$additional_acer != 0, ]
-
-model <- lm(additional_acer ~ age, data = df)
-res_acer <- resid(model)
-
-model <- lm(expression ~ age, data = df)
-res_expression <- resid(model)
-
-output <- lm(res_expression ~ res_acer, data = df)
-lm.beta(output)
-summary(output)
-
-# Plot
-plot(res_acer, res_expression)
-abline(a = output$coefficients[1], b = output$coefficients[2])
-
-# Save
-capture.output(summary(output), file = glue("{base_dir}/plots/all_points_regression_cognitive.txt"))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#-------------------------------------------------------------------------------
-#------ CLUSTER: SMALL ---------------------------------------------------------
-
-clustername = "cluster_small"
-
-lh <- compute_avg_distances(clustername, "lh")
-rh <- compute_avg_distances(clustername, "rh")
-df_distances <- merge(lh, rh, by = "subject")
-
-# Average over both hemis
-# Reverse to obtain a measure of expression
-df_distances <- df_distances %>%
-  mutate(avdist_avg = (avdist_lh + avdist_rh) / 2) %>%
-  mutate(expression = 100 - avdist_avg)
-
-# Merge. Don't save, because not as important as cluster_large stats
-df <- merge(df_distances, demo_acer, by="subject")
-
-
-#----- STATS: EXPRESSION ~ AGE -------------------------------------------------
-output <- lm(expression ~ age, data = df)
-summary(output)
-lm.beta(output)
-capture.output(summary(output), file = glue("{base_dir}/plots/small_cluster_regression_stats_age.txt"))
-
-#----- STATS: EXPRESSION RES ~ ACER RES --------------------------------------
-df <- df[df$additional_acer != 0, ]
-
-model <- lm(additional_acer ~ age, data = df)
-res_acer <- resid(model)
-
-model <- lm(expression ~ age, data = df)
-res_expression <- resid(model)
-
-output <- lm(res_expression ~ res_acer, data = df)
-summary(output)
-lm.beta(output)
-capture.output(summary(output), file = glue("{base_dir}/plots/small_cluster_regression_stats_cognitive.txt"))
