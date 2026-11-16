@@ -9,6 +9,7 @@ library(tidyverse)
 library(ggplot2)
 library(ggfortify)
 library(glue)
+library(MCI) # for beta weight
 
 base_dir = "C:/meg/params/0_SpatioSpec_results/SpatioSpec_code/Data/"  # USER INPUT
 demo_dir = paste0(base_dir, "Demographics/")
@@ -29,7 +30,7 @@ demo_acer <- merge(app, scores, by="subject")
 # Distances
 # For one cluster and hemi, get each subject's average distance across frequencies
 compute_avg_distances <- function(clustername, hemi) {
-  distances <- read_feather(glue("{base_dir}/CAMCAN_individual_distances_from_centroid_cluster_{clustername}_{hemi}.rds"))
+  distances <- read_feather(glue("{base_dir}/CAMCAN_individual_distances_from_centroid_{clustername}_{hemi}.rds"))
   avg <- distances %>%
     filter(freq >= 8) %>%
     group_by(subject) %>%
@@ -38,12 +39,21 @@ compute_avg_distances <- function(clustername, hemi) {
   return(avg)
 }
 
+
+
+
+
+
+
+
+
+
+
 #-------------------------------------------------------------------------------
 #------ CLUSTER: LARGE ---------------------------------------------------------
 
-clustername = "large"
+clustername = "cluster_large"
 
-# These input files are the distance of the individual peaks *in the large cluster* from the centroid of the large cluster
 lh <- compute_avg_distances(clustername, "lh")
 rh <- compute_avg_distances(clustername, "rh")
 df_distances <- merge(lh, rh, by = "subject")
@@ -61,6 +71,7 @@ write.table(df, glue("{base_dir}/CAMCAN_avdist_demo_acer.txt"))
 
 #----- STATS: EXPRESSION ~ AGE -------------------------------------------------
 output <- lm(expression ~ age, data = df)
+lm.beta(output)
 summary(output)
 
 # Plot
@@ -91,6 +102,7 @@ model <- lm(expression ~ age, data = df)
 res_expression <- resid(model)
 
 output <- lm(res_expression ~ res_acer, data = df)
+lm.beta(output)
 summary(output)
 
 # Plot
@@ -113,12 +125,91 @@ ggsave(glue("{base_dir}/plots/Fig4B.png"), width = 5, height = 5, dpi = 300)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+#-------------------------------------------------------------------------------
+#------ ALL POINTS -------------------------------------------------------------
+
+clustername = "all"
+
+lh <- compute_avg_distances(clustername, "lh")
+rh <- compute_avg_distances(clustername, "rh")
+df_distances <- merge(lh, rh, by = "subject")
+
+# Average over both hemis
+# Reverse to obtain a measure of expression
+df_distances <- df_distances %>%
+  mutate(avdist_avg = (avdist_lh + avdist_rh) / 2) %>%
+  mutate(expression = 100 - avdist_avg)
+
+# Merge and save
+df <- merge(df_distances, demo_acer, by="subject")
+write.table(df, glue("{base_dir}/CAMCAN_avdist_demo_acer.txt"))
+
+
+#----- STATS: EXPRESSION ~ AGE -------------------------------------------------
+output <- lm(expression ~ age, data = df)
+lm.beta(output)
+summary(output)
+
+# Plot
+plot(df$age, df$expression, ylab = "'expression' all points")
+abline(a = output$coefficients[1], b = output$coefficients[2])
+
+# Save
+capture.output(summary(output), file = glue("{base_dir}/plots/all_points_regression_age.txt"))
+
+#----- STATS: EXPRESSION RES ~ ACER RES --------------------------------------
+df <- df[df$additional_acer != 0, ]
+
+model <- lm(additional_acer ~ age, data = df)
+res_acer <- resid(model)
+
+model <- lm(expression ~ age, data = df)
+res_expression <- resid(model)
+
+output <- lm(res_expression ~ res_acer, data = df)
+lm.beta(output)
+summary(output)
+
+# Plot
+plot(res_acer, res_expression)
+abline(a = output$coefficients[1], b = output$coefficients[2])
+
+# Save
+capture.output(summary(output), file = glue("{base_dir}/plots/all_points_regression_cognitive.txt"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #-------------------------------------------------------------------------------
 #------ CLUSTER: SMALL ---------------------------------------------------------
 
-clustername = "small"
+clustername = "cluster_small"
 
-# These input files are the distance of the individual peaks *in the small cluster* from the centroid of the small cluster
 lh <- compute_avg_distances(clustername, "lh")
 rh <- compute_avg_distances(clustername, "rh")
 df_distances <- merge(lh, rh, by = "subject")
@@ -136,6 +227,7 @@ df <- merge(df_distances, demo_acer, by="subject")
 #----- STATS: EXPRESSION ~ AGE -------------------------------------------------
 output <- lm(expression ~ age, data = df)
 summary(output)
+lm.beta(output)
 capture.output(summary(output), file = glue("{base_dir}/plots/small_cluster_regression_stats_age.txt"))
 
 #----- STATS: EXPRESSION RES ~ ACER RES --------------------------------------
@@ -149,4 +241,5 @@ res_expression <- resid(model)
 
 output <- lm(res_expression ~ res_acer, data = df)
 summary(output)
+lm.beta(output)
 capture.output(summary(output), file = glue("{base_dir}/plots/small_cluster_regression_stats_cognitive.txt"))

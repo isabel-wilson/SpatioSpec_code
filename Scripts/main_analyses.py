@@ -140,6 +140,7 @@ def stc_one_timepoint(stc, t, hemi):
 with open(f"{base_dir}/CAMCAN_subject_list.txt") as f:
    subjects = f.read().split()
 
+# Briefly: For each subject, compute the peak for each frequency. Save to array. The length of the array will be subjects x freqs
 for hemi in ["lh", "rh"]:
    inflated_surface_rr, inflated_surface_tri = mne.read_surface(f"{fs_dir}/fsaverage/surf/{hemi}.inflated")
 
@@ -336,7 +337,8 @@ Output:
 """
 # -------------------------------------------------------------------------------------------------------------------
 
-
+# Briefly: For each individual_peak file created earlier, filter to include only points in the cluster of interest, 
+# then compute the centroid of these filtered points
 for hemi in ["lh", "rh"]:
 
    #----- Load files
@@ -370,6 +372,8 @@ for hemi in ["lh", "rh"]:
          df_filtered_f = df_filtered.loc[df_filtered['freq'] == f]
          # stc_data for this freq:
          stc_data = np.zeros(shape = (inflated_surface_rr.shape[0], 1))
+
+         # Briefly: To compute the centroid of a lot of points, change each point to a "1" (0 otherwise)
          # For each point: (row is subject, freq, x, y, z)
          for col_i, (index, row) in enumerate(df_filtered_f.iterrows()):
          # Pull out coordinate and convert to vertex
@@ -404,6 +408,7 @@ for hemi in ["lh", "rh"]:
       else:
          clustername = "large"
 
+      # Save
       with open(os.path.join(base_dir, f"CAMCAN_centroids_{clustername}_{hemi}.pkl") , "wb") as file:
          pickle.dump(COM_list, file)
       with open(os.path.join(base_dir, f"CAMCAN_centroids_{clustername}_{hemi}_vertex.pkl") , "wb") as file:
@@ -793,4 +798,128 @@ with open(f'{base_dir}/plots/TableS1.txt', 'w') as file:
          row.append(f'min: {str(null_min)}, max: {str(null_max)}, p: {str(p)}')
       print(*row, file=file)
 
+
+# -------------------------------------------------------------------------------------------------------------------
+"""
+EXTRA: CONTROL ANALYSIS: COMPUTE DISTANCE OF *ALL* PEAKS FROM CENTROID OF *ALL* PEAKS
+
+"""
+
+# -------------------------------------------------------------------------------------------------------------------
+
+base_dir = "C:/meg/params/0_SpatioSpec_results/SpatioSpec_code/Data/" 
+
+fs_dir = f"{base_dir}/fs_subjects"
+
+freqs = np.arange(8, 30, 0.25)
+
+#------------ Make centroids "all"
+
+for hemi in ["lh", "rh"]:
+
+   #----- Load files
+   inflated_surface_rr, inflated_surface_tri = mne.read_surface(f"{fs_dir}/fsaverage/surf/{hemi}.inflated")
+
+   with open(os.path.join(base_dir, f"CAMCAN_individual_peaks_{hemi}.pkl"), "rb") as f:
+      df = pickle.load(f)
+
+   #----- Compute center of mass of center of masses:
+   # Loop through freqs. For each freq: (1) Extract relevant rows
+   # (2) Join them to produce a new array
+   # (3) Compute the centroid
+
+   COM_list = [] # List for output
+   #COM_list_vertex = [] # Same, but in vertex format instead of xyz format
+   # Loop through freqs
+   for f in freqs:
+      print(f)
+      # Just points for this freq:
+      df_f = df.loc[df['freq'] == f]
+      # stc_data for this freq:
+      stc_data = np.zeros(shape = (inflated_surface_rr.shape[0], 1))
+
+      # Briefly: To compute the centroid of a lot of points, change each point to a "1" (0 otherwise)
+      # For each point: (row is subject, freq, x, y, z)
+      for col_i, (index, row) in enumerate(df_f.iterrows()):
+      # Pull out coordinate and convert to vertex
+         coord = row[2:].to_numpy()
+         vertex = np.where((inflated_surface_rr == coord).all(axis=1))[0][0]
+         # Create an array with 0s everywhere, except for a 1 at given vertex, or more than 1 if two subjects are there
+         stc_data[vertex, 0] = stc_data[vertex, 0] + 1
+      if np.any(stc_data!=0):
+         # Convert to stc
+         stc_data_bothhemi = np.vstack((stc_data, stc_data))
+         stc = mne.SourceEstimate(
+            data = stc_data_bothhemi,
+            vertices=[np.arange(0, inflated_surface_rr.shape[0]), np.arange(0, inflated_surface_rr.shape[0])],
+            tmin=0,
+            tstep=1)
+         # Compute centroid
+         if hemi == "lh":
+            hemi_param = 0
+         else:
+            hemi_param = 1
+         COM_vertex, _, _ = stc.center_of_mass(hemi=hemi_param, subject = "fsaverage", subjects_dir = fs_dir)
+         COM_coord = inflated_surface_rr[COM_vertex]
+         COM_list.append(np.insert(COM_coord, 0, f))
+         #COM_list_vertex.append(np.array([f, COM_vertex]))
+        # print(f, COM_vertex)
+      else:
+         COM_list.append(np.array([f, np.nan, np.nan, np.nan]))
+         #COM_list_vertex.append(np.array([f, np.nan]))
+
+   # Save
+   with open(os.path.join(base_dir, f"CAMCAN_centroids_all_{hemi}.pkl") , "wb") as file:
+      pickle.dump(COM_list, file)
+
+
+#------------ Make distances
+
+for hemi in ["lh", "rh"]:
+
+   # LOAD DATA
+   with open(os.path.join(base_dir, f"CAMCAN_centroids_all_{hemi}.pkl"), "rb") as f:
+      mean = pickle.load(f)
+   mean = pd.DataFrame(mean, columns=["freq", "x", "y", "z"])
+   freqs_used = np.unique(mean["freq"])
+
+   with open(os.path.join(base_dir, f"CAMCAN_individual_peaks_{hemi}.pkl"), "rb") as f:
+      individuals = pickle.load(f)
+   individuals = individuals[individuals["freq"].isin(freqs_used)]
+
+   ##### Distance = sqrt((x-x)^2 + (y-y)^2 + (z-z)^2)
+
+   # dataframe for output:
+   # x y z mean is included to be helpful for later plotting
+   distances = pd.DataFrame(columns = ["subject", "freq", "distance"])
+
+   for index, row in individuals.iterrows():
+      subject = row["subject"]
+      freq = row["freq"]
+      x_individual = row["x"]
+      y_individual = row["y"]
+      z_individual = row["z"]
+      x_mean = mean.loc[mean['freq'] == freq, 'x'].iloc[0]
+      y_mean = mean.loc[mean['freq'] == freq, 'y'].iloc[0]
+      z_mean = mean.loc[mean['freq'] == freq, 'z'].iloc[0]
+      x_term = (x_individual - x_mean)**2
+      y_term = (y_individual - y_mean)**2
+      z_term = (z_individual - z_mean)**2
+      distance = math.sqrt(x_term + y_term + z_term)
+      distances.loc[len(distances)] = [subject, freq, distance]
+
+   distances.to_feather(f"{base_dir}/CAMCAN_individual_distances_from_centroid_all_{hemi}.rds")
+
+# Plot for visualization
+with open(os.path.join(base_dir, f"CAMCAN_centroids_all_{hemi}.pkl"), "rb") as f:
+   c = pickle.load(f)
+with open(os.path.join(base_dir, f"CAMCAN_individual_peaks_{hemi}.pkl"), "rb") as f:
+      df = pickle.load(f)
+c = np.array(df)
+ax = plt.figure().add_subplot(projection="3d")
+#ax.scatter(c[:, 2], c[:, 3], c[:, 4], c=c[:, 1], cmap="viridis")
+ax.scatter(df["x"], df["y"], df["z"], c=df["freq"], cmap="viridis")
+ax.set(xlabel="x", ylabel="y", zlabel="z")
+ax.set_aspect("equal")
+plt.show()
 # %%
