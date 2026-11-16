@@ -1,4 +1,4 @@
-Code for the "SpatioSpec" paper. Reproducible! Commented! Well-organized! Explained for reviewers!
+Code for the "SpatioSpec" paper. 
 
 -------------------------------------------------------------------------------------------------------------------
 HOW TO REPRODUCE THIS PAPER
@@ -98,8 +98,3 @@ SpatioSpec_code
 FAQ (frequently-asked questions)
 
 What do I need to change in the script? base_dir = .../SpatioSpec_code/Data/
-
--------------------------------------------------------------------------------------------------------------------
-UAQ (unfrequently-asked questions)
-
-How long did this take to set up? 18 nearly-consecutive hours
