@@ -17,9 +17,15 @@ demo_dir = paste0(base_dir, "Demographics/")
 
 #----- SET UP FOR DATAFRAME ----------------------------------------------------
 
-# Demographics
-demo <- read.csv(glue("{demo_dir}/clean_scores.csv"))
-colnames(demo)[colnames(demo)=="ID"] <- "subject"
+# Demographics and ACER
+scores <- read.csv(glue("{demo_dir}/clean_scores.csv"))
+colnames(scores)[colnames(scores)=="ID"] <- "subject"
+
+app <- read.csv(glue("{demo_dir}/approved_data.csv"), sep="\t")
+colnames(app)[colnames(app)=="CCID"] <- "subject"
+app$subject <- paste0("sub-", app$subject)
+
+demo_acer <- merge(app, scores, by="subject")
 
 # Distances
 # For one cluster and hemi, get each subject's average distance across frequencies
@@ -32,15 +38,6 @@ compute_avg_distances <- function(clustername, hemi) {
   colnames(avg)[colnames(avg)=="avdist"] <- paste0("avdist_", hemi)
   return(avg)
 }
-
-
-
-
-
-
-
-
-
 
 
 #-------------------------------------------------------------------------------
@@ -59,7 +56,7 @@ df_distances <- df_distances %>%
   mutate(expression = 100 - avdist_avg)
 
 # Merge and save
-df <- merge(df_distances, demo, by="subject")
+df <- merge(df_distances, demo_acer, by="subject")
 write.table(df, glue("{base_dir}/CAMCAN_avdist_demo_acer.txt"))
 
 
@@ -87,7 +84,35 @@ ggsave(glue("{base_dir}/plots/Fig4A.png"), width = 5, height = 5, dpi = 300)
 
 
 
+#----- STATS: EXPRESSION_RES ~ ACER_RES -------------------------------------------------
+df <- df[df$additional_acer != 0, ]
 
+model <- lm(additional_acer ~ age, data = df)
+res_acer <- resid(model)
+
+model <- lm(expression ~ age, data = df)
+res_expression <- resid(model)
+
+output <- lm(res_expression ~ res_acer, data = df)
+summary(output)
+
+# Plot
+ggplot(data = df, aes(x = res_acer, y = res_expression)) + 
+  geom_point(color = "#fc7d7d", size = 2) + 
+  geom_smooth(method = "lm", linewidth = 2, color = "black") +
+  theme_classic() + 
+  labs(
+    y = "gradient expression (age-regressed)",
+    x = "acer (age-regressed)"
+  ) + 
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16),
+    aspect.ratio = 1) 
+
+# Save
+capture.output(summary(output), file = glue("{base_dir}/plots/Fig4B_regression_stats.txt"))
+ggsave(glue("{base_dir}/plots/Fig4B.png"), width = 5, height = 5, dpi = 300)
 
 
 
@@ -113,7 +138,7 @@ df_distances <- df_distances %>%
   mutate(expression = 100 - avdist_avg)
 
 # Merge and save
-df <- merge(df_distances, demo, by="subject")
+df <- merge(df_distances, demo_acer, by="subject")
 write.table(df, glue("{base_dir}/CAMCAN_avdist_demo_acer.txt"))
 
 
