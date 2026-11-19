@@ -49,9 +49,9 @@ ORGANIZATION OF OUTPUT FILES
 SpatioSpec_code
 |-- Data
 |   |-- CAMCAN_avdist_demo_acer.txt                      # table organizing individual demographics, cognitive scores, and gradient expression
-|   |-- CAMCAN_centroids_large_lh.pkl                    # centroids of cluster. 8 files of this format (large, small; lh, rh; xyz coords, vertex)
+|   |-- CAMCAN_centroids_large_lh.pkl                    # centroids of cluster. 10 files of this format (large, small, all; lh, rh; xyz coords, vertex)
 |   |-- ... 
-|   |-- CAMCAN_individual_distances_from_centroid_cluster_large_lh.rds     # distance of in-cluster peaks from centroid of cluster. 4 files of this format (large, small; lh, rh)
+|   |-- CAMCAN_individual_distances_from_centroid_cluster_large_lh.rds     # distance of in-cluster peaks from centroid of cluster. 6 files of this format (large, small, all; lh, rh)
 |   |-- ... 
 |   |-- CAMCAN_individual_peaks_lh.pkl                   # individual peaks. 8 files of this format (lh, rh; unnormalized, normalized; xyz coords, vertex)
 |   |-- ... 
@@ -89,7 +89,7 @@ SpatioSpec_code
 |   |   |-- Fig4B_regression_stats.txt
 |   |   |-- TableS1.txt
 |   |   |-- cluster_summary.txt
-|   |   `-- small_cluster_regression_stats.txt
+|   |   `-- all_points_regression_age.txt
 |   `-- st_dbscan.py
 `-- Scripts                                              # folder; contents same as input
 |   |-- ... 
